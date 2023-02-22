@@ -29,7 +29,8 @@ The [example.py](example.py) contains an example of use where:
 ### Domain
 This class represents the pddl file of the domain.
 #### Quick look
-![Immagine-modified](https://user-images.githubusercontent.com/101431140/219009467-1fd6c90c-9894-4790-a3d0-906a25e2a17b.png)
+![domain](https://user-images.githubusercontent.com/101431140/220740934-23c830d4-54e0-420b-a558-b35b16907981.png)
+
 
 
 
