@@ -299,5 +299,5 @@ java -jar antlr-4.11.1-complete.jar -Dlanguage=Python3 pddl.g4 -o antlr4_directo
 ```
 
 ## Resources
-[Grammar](https://gitlab.com/enricos83/PPMAJAL-Expressive-PDDL-Java-Library/-/blob/master/grammar/Pddl.g) for antlr3 by Enrico Scala
-[Syntactic Tree Viewer](https://christos-c.com/treeviewer/) To visualize the parse-tree
+* [Grammar](https://gitlab.com/enricos83/PPMAJAL-Expressive-PDDL-Java-Library/-/blob/master/grammar/Pddl.g) for antlr3 by Enrico Scala
+* [Syntactic Tree Viewer](https://christos-c.com/treeviewer/) To visualize the parse-tree
