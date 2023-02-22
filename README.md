@@ -290,3 +290,10 @@ The class Process represents one process of the pddl file. It is composed by nam
 ------
 ### Event
 The class Event represents one event of the pddl file. It is composed by name, parameters, preconditions and effect.It inherits everything by the [Operation class](#operation)
+
+## Antlr4 Directory
+The [antlr4_directory](pyGrounder/myClasses/antlr4_directory) is generated with our [grammar](antlr4/pddl.g4) and the [antlr4 Java Archive](antlr4/antlr-4.11.1-complete.jar) by the following command: 
+
+``` bash
+java -jar antlr-4.11.1-complete.jar -Dlanguage=Python3 pddl.g4 -o antlr4_directory 
+```
