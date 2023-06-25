@@ -584,6 +584,7 @@ The ReduceCombination constructor accepts a Domain object, a Problem object, and
 #### Methods
 
 *  ```.reduceGrounderCombination(operation : {preconditions, effects})```<br>
+
 The ReduceCombination constructor is the sole method of the class, and its purpose is to reduce all the possible combinations to only those necessary to achieve the same result with the planner. The implemented algorithm is a static algorithm that checks all the fluents and simplifies the combinations based on the presence of static fluents, which means they do not change their value over time.
 
 ------
