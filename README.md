@@ -564,11 +564,13 @@ The class Event represents one event of the pddl file. It is composed by name, p
 
 Te ReducedCombination class contains one method that allows to reduced the total number of combinations without changing the result of the planner.
 
-  
 
 #### Attributes
 
-*  ```combinations : list[]```
+*  ```combinations : list[Tuple]``` It is a list of tuples where each tuple represents a combination of objects that can be substituted for the parameters of the transition (action, process, and event). 
+
+*For example:* ('robot1-?r', 'roomA-?a', 'roomA-?b') is a combination for the action startMoving  that requires as parameters  (?r - robot ?a - room ?b - room)
+
 *  ```problem : Problem```
 *  ```domain : Domain```
 
@@ -576,13 +578,13 @@ Te ReducedCombination class contains one method that allows to reduced the total
 
 #### Constructor
 
-The ReduceCombiantion constructor takes in input a Domain object, a Problem object and the list of all the possible combinations of the objects of the pddl+ problem.
+The ReduceCombination constructor accepts a Domain object, a Problem object, and a list containing all the possible combinations of the objects in the PDDL+ problem as input.
   
 
 #### Methods
 
 *  ```.reduceGrounderCombination(operation : {preconditions, effects})```<br>
-Is the only method of the class. Its function is to reduce all the possible combinations to the only necessary to get the same result with the planner. 
+The ReduceCombination constructor is the sole method of the class, and its purpose is to reduce all the possible combinations to only those necessary to achieve the same result with the planner. The implemented algorithm is a static algorithm that checks all the fluents and simplifies the combinations based on the presence of static fluents, which means they do not change their value over time.
 
 ------
 
