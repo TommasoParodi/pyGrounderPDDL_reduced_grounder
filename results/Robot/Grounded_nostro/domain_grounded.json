@@ -1,0 +1,4296 @@
+{
+    "domain": "robots",
+    "requirements": [
+        ":fluents",
+        ":durative-actions",
+        ":duration-inequalities",
+        ":adl",
+        ":typing",
+        ":time"
+    ],
+    "types": [
+        "robot",
+        "room",
+        "obj"
+    ],
+    "constants": [
+        {
+            "constantName": "robot1",
+            "constantType": "robot"
+        },
+        {
+            "constantName": "robot2",
+            "constantType": "robot"
+        },
+        {
+            "constantName": "roomA",
+            "constantType": "room"
+        },
+        {
+            "constantName": "roomB",
+            "constantType": "room"
+        },
+        {
+            "constantName": "roomC",
+            "constantType": "room"
+        },
+        {
+            "constantName": "ball1",
+            "constantType": "obj"
+        }
+    ],
+    "predicates": [
+        {
+            "predicateName": "atRobot",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "predicateName": "atObject",
+            "predicateParameters": [
+                {
+                    "parameterName": "?o",
+                    "parameterType": "obj"
+                },
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "predicateName": "allowed",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "predicateName": "holding",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?o",
+                    "parameterType": "obj"
+                }
+            ]
+        },
+        {
+            "predicateName": "handsFull",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ]
+        },
+        {
+            "predicateName": "ismoving",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?a",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?b",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "predicateName": "inMovement",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ]
+        },
+        {
+            "predicateName": "ischarging",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ]
+        },
+        {
+            "predicateName": "link",
+            "predicateParameters": [
+                {
+                    "parameterName": "?a",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?b",
+                    "parameterType": "room"
+                }
+            ]
+        }
+    ],
+    "functions": [
+        {
+            "predicateName": "speed",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ]
+        },
+        {
+            "predicateName": "dischargeRate",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ]
+        },
+        {
+            "predicateName": "battery",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ]
+        },
+        {
+            "predicateName": "distance",
+            "predicateParameters": [
+                {
+                    "parameterName": "?a",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?b",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "predicateName": "distanceRun",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?a",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?b",
+                    "parameterType": "room"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "actionName": "startMoving_robot1_roomA_roomB",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(link roomA roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (inMovement robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot1 roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(allowed robot1 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "allowed",
+                    "Parameters": [
+                        "robot1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(handsFull robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (atRobot robot1 roomA))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomA"
+                    ]
+                },
+                {
+                    "effect": "(ismoving robot1 roomA roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(inMovement robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "effectString": "(assign(distanceRun robot1 roomA roomB) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(distanceRun robot1 roomA roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomA",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "effectString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "startMoving_robot1_roomB_roomA",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(link roomB roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (inMovement robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot1 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(allowed robot1 roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "allowed",
+                    "Parameters": [
+                        "robot1",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(handsFull robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (atRobot robot1 roomB))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(ismoving robot1 roomB roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "effect": "(inMovement robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "effectString": "(assign(distanceRun robot1 roomB roomA) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(distanceRun robot1 roomB roomA)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomB",
+                                "roomA"
+                            ]
+                        },
+                        {
+                            "effectString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "startMoving_robot2_roomB_roomC",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(link roomB roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (inMovement robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot2 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(allowed robot2 roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "allowed",
+                    "Parameters": [
+                        "robot2",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(handsFull robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (atRobot robot2 roomB))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(ismoving robot2 roomB roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "effect": "(inMovement robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "effectString": "(assign(distanceRun robot2 roomB roomC) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(distanceRun robot2 roomB roomC)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomB",
+                                "roomC"
+                            ]
+                        },
+                        {
+                            "effectString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "startMoving_robot2_roomC_roomB",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(link roomC roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (inMovement robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot2 roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(allowed robot2 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "allowed",
+                    "Parameters": [
+                        "robot2",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(handsFull robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (atRobot robot2 roomC))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomC"
+                    ]
+                },
+                {
+                    "effect": "(ismoving robot2 roomC roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(inMovement robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "effectString": "(assign(distanceRun robot2 roomC roomB) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(distanceRun robot2 roomC roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomC",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "effectString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "startCharging_robot1",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (inMovement robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "effect": "(ischarging robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ischarging",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "startCharging_robot2",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (inMovement robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "effect": "(ischarging robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ischarging",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "stopCharging_robot1",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(ischarging robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ischarging",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (ischarging robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "ischarging",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "effect": "(inMovement robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "stopCharging_robot2",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(ischarging robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ischarging",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (ischarging robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "ischarging",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "effect": "(inMovement robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "pick_ball1_robot1_roomA",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot1 roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(atObject ball1 roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (handsFull robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(holding robot1 ball1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot1",
+                        "ball1"
+                    ]
+                },
+                {
+                    "effect": "(not (atObject ball1 roomA))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomA"
+                    ]
+                },
+                {
+                    "effect": "(handsFull robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "pick_ball1_robot1_roomB",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot1 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(atObject ball1 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (handsFull robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(holding robot1 ball1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot1",
+                        "ball1"
+                    ]
+                },
+                {
+                    "effect": "(not (atObject ball1 roomB))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(handsFull robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "pick_ball1_robot1_roomC",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot1 roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(atObject ball1 roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (handsFull robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(holding robot1 ball1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot1",
+                        "ball1"
+                    ]
+                },
+                {
+                    "effect": "(not (atObject ball1 roomC))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomC"
+                    ]
+                },
+                {
+                    "effect": "(handsFull robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "pick_ball1_robot2_roomA",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot2 roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(atObject ball1 roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (handsFull robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(holding robot2 ball1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot2",
+                        "ball1"
+                    ]
+                },
+                {
+                    "effect": "(not (atObject ball1 roomA))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomA"
+                    ]
+                },
+                {
+                    "effect": "(handsFull robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "pick_ball1_robot2_roomB",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot2 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(atObject ball1 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (handsFull robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(holding robot2 ball1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot2",
+                        "ball1"
+                    ]
+                },
+                {
+                    "effect": "(not (atObject ball1 roomB))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(handsFull robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "pick_ball1_robot2_roomC",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot2 roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(atObject ball1 roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (handsFull robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(holding robot2 ball1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot2",
+                        "ball1"
+                    ]
+                },
+                {
+                    "effect": "(not (atObject ball1 roomC))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomC"
+                    ]
+                },
+                {
+                    "effect": "(handsFull robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "drop_ball1_robot1_roomA",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot1 roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(holding robot1 ball1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot1",
+                        "ball1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (holding robot1 ball1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot1",
+                        "ball1"
+                    ]
+                },
+                {
+                    "effect": "(atObject ball1 roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomA"
+                    ]
+                },
+                {
+                    "effect": "(not (handsFull robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "drop_ball1_robot1_roomB",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot1 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(holding robot1 ball1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot1",
+                        "ball1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (holding robot1 ball1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot1",
+                        "ball1"
+                    ]
+                },
+                {
+                    "effect": "(atObject ball1 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(not (handsFull robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "drop_ball1_robot1_roomC",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot1 roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(holding robot1 ball1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot1",
+                        "ball1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (holding robot1 ball1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot1",
+                        "ball1"
+                    ]
+                },
+                {
+                    "effect": "(atObject ball1 roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomC"
+                    ]
+                },
+                {
+                    "effect": "(not (handsFull robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "drop_ball1_robot2_roomA",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot2 roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(holding robot2 ball1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot2",
+                        "ball1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (holding robot2 ball1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot2",
+                        "ball1"
+                    ]
+                },
+                {
+                    "effect": "(atObject ball1 roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomA"
+                    ]
+                },
+                {
+                    "effect": "(not (handsFull robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "drop_ball1_robot2_roomB",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot2 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(holding robot2 ball1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot2",
+                        "ball1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (holding robot2 ball1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot2",
+                        "ball1"
+                    ]
+                },
+                {
+                    "effect": "(atObject ball1 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(not (handsFull robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "drop_ball1_robot2_roomC",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(atRobot robot2 roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(holding robot2 ball1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot2",
+                        "ball1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (holding robot2 ball1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "holding",
+                    "Parameters": [
+                        "robot2",
+                        "ball1"
+                    ]
+                },
+                {
+                    "effect": "(atObject ball1 roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atObject",
+                    "Parameters": [
+                        "ball1",
+                        "roomC"
+                    ]
+                },
+                {
+                    "effect": "(not (handsFull robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ]
+        }
+    ],
+    "processes": [
+        {
+            "processName": "moving_robot1_roomA_roomB",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(link roomA roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot1 roomA roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(distanceRun robot1 roomA roomB)(distance roomA roomB))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot1 roomA roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomA",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomA roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomA",
+                                "roomB"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(distanceRun robot1 roomA roomB)(*(speed robot1) #t))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(distanceRun robot1 roomA roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomA",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "effectString": "(*(speed robot1) #t)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effect": "(speed robot1)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "speed",
+                                    "Parameters": [
+                                        "robot1"
+                                    ]
+                                },
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "moving_robot1_roomB_roomA",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(link roomB roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot1 roomB roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(distanceRun robot1 roomB roomA)(distance roomB roomA))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot1 roomB roomA)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomB",
+                                "roomA"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomB roomA)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomB",
+                                "roomA"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(distanceRun robot1 roomB roomA)(*(speed robot1) #t))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(distanceRun robot1 roomB roomA)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomB",
+                                "roomA"
+                            ]
+                        },
+                        {
+                            "effectString": "(*(speed robot1) #t)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effect": "(speed robot1)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "speed",
+                                    "Parameters": [
+                                        "robot1"
+                                    ]
+                                },
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "moving_robot1_roomB_roomC",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(link roomB roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot1 roomB roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(distanceRun robot1 roomB roomC)(distance roomB roomC))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot1 roomB roomC)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomB",
+                                "roomC"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomB roomC)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomB",
+                                "roomC"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(distanceRun robot1 roomB roomC)(*(speed robot1) #t))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(distanceRun robot1 roomB roomC)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomB",
+                                "roomC"
+                            ]
+                        },
+                        {
+                            "effectString": "(*(speed robot1) #t)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effect": "(speed robot1)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "speed",
+                                    "Parameters": [
+                                        "robot1"
+                                    ]
+                                },
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "moving_robot1_roomC_roomB",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(link roomC roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot1 roomC roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(distanceRun robot1 roomC roomB)(distance roomC roomB))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot1 roomC roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomC",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomC roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomC",
+                                "roomB"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(distanceRun robot1 roomC roomB)(*(speed robot1) #t))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(distanceRun robot1 roomC roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomC",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "effectString": "(*(speed robot1) #t)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effect": "(speed robot1)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "speed",
+                                    "Parameters": [
+                                        "robot1"
+                                    ]
+                                },
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "moving_robot2_roomA_roomB",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(link roomA roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot2 roomA roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(distanceRun robot2 roomA roomB)(distance roomA roomB))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot2 roomA roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomA",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomA roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomA",
+                                "roomB"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(distanceRun robot2 roomA roomB)(*(speed robot2) #t))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(distanceRun robot2 roomA roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomA",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "effectString": "(*(speed robot2) #t)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effect": "(speed robot2)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "speed",
+                                    "Parameters": [
+                                        "robot2"
+                                    ]
+                                },
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "moving_robot2_roomB_roomA",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(link roomB roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot2 roomB roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(distanceRun robot2 roomB roomA)(distance roomB roomA))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot2 roomB roomA)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomB",
+                                "roomA"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomB roomA)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomB",
+                                "roomA"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(distanceRun robot2 roomB roomA)(*(speed robot2) #t))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(distanceRun robot2 roomB roomA)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomB",
+                                "roomA"
+                            ]
+                        },
+                        {
+                            "effectString": "(*(speed robot2) #t)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effect": "(speed robot2)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "speed",
+                                    "Parameters": [
+                                        "robot2"
+                                    ]
+                                },
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "moving_robot2_roomB_roomC",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(link roomB roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot2 roomB roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(distanceRun robot2 roomB roomC)(distance roomB roomC))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot2 roomB roomC)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomB",
+                                "roomC"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomB roomC)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomB",
+                                "roomC"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(distanceRun robot2 roomB roomC)(*(speed robot2) #t))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(distanceRun robot2 roomB roomC)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomB",
+                                "roomC"
+                            ]
+                        },
+                        {
+                            "effectString": "(*(speed robot2) #t)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effect": "(speed robot2)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "speed",
+                                    "Parameters": [
+                                        "robot2"
+                                    ]
+                                },
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "moving_robot2_roomC_roomB",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(link roomC roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot2 roomC roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(distanceRun robot2 roomC roomB)(distance roomC roomB))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot2 roomC roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomC",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomC roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomC",
+                                "roomB"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(distanceRun robot2 roomC roomB)(*(speed robot2) #t))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(distanceRun robot2 roomC roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomC",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "effectString": "(*(speed robot2) #t)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effect": "(speed robot2)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "speed",
+                                    "Parameters": [
+                                        "robot2"
+                                    ]
+                                },
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "charging_robot1",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(ischarging robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ischarging",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(battery robot1) 100)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "100",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(battery robot1)(* #t 1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "charging_robot2",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(ischarging robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ischarging",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(battery robot2) 100)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "100",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(battery robot2)(* #t 1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "discharging_robot1",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(handsFull robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (ischarging robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "ischarging",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(battery robot1) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(decrease(battery robot1)(* #t(*(speed robot1)(dischargeRate robot1))))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t(*(speed robot1)(dischargeRate robot1)))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "(*(speed robot1)(dischargeRate robot1))",
+                                    "isNegated?": false,
+                                    "isOperation?": true,
+                                    "Name": "*",
+                                    "Parameters": [
+                                        {
+                                            "effect": "(speed robot1)",
+                                            "isNegated?": false,
+                                            "isOperation?": false,
+                                            "Name": "speed",
+                                            "Parameters": [
+                                                "robot1"
+                                            ]
+                                        },
+                                        {
+                                            "effect": "(dischargeRate robot1)",
+                                            "isNegated?": false,
+                                            "isOperation?": false,
+                                            "Name": "dischargeRate",
+                                            "Parameters": [
+                                                "robot1"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "discharging_robot2",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(handsFull robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "handsFull",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (ischarging robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "ischarging",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(battery robot2) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(decrease(battery robot2)(* #t(*(speed robot2)(dischargeRate robot2))))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t(*(speed robot2)(dischargeRate robot2)))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "(*(speed robot2)(dischargeRate robot2))",
+                                    "isNegated?": false,
+                                    "isOperation?": true,
+                                    "Name": "*",
+                                    "Parameters": [
+                                        {
+                                            "effect": "(speed robot2)",
+                                            "isNegated?": false,
+                                            "isOperation?": false,
+                                            "Name": "speed",
+                                            "Parameters": [
+                                                "robot2"
+                                            ]
+                                        },
+                                        {
+                                            "effect": "(dischargeRate robot2)",
+                                            "isNegated?": false,
+                                            "isOperation?": false,
+                                            "Name": "dischargeRate",
+                                            "Parameters": [
+                                                "robot2"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "events": [
+        {
+            "eventName": "endMoving_robot1_roomA_roomB",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(link roomA roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot1 roomA roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(distanceRun robot1 roomA roomB)(distance roomA roomB))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot1 roomA roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomA",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomA roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomA",
+                                "roomB"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(atRobot robot1 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(not (ismoving robot1 roomA roomB))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(not (inMovement robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "endMoving_robot1_roomB_roomA",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(link roomB roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot1 roomB roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(distanceRun robot1 roomB roomA)(distance roomB roomA))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot1 roomB roomA)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomB",
+                                "roomA"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomB roomA)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomB",
+                                "roomA"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(atRobot robot1 roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomA"
+                    ]
+                },
+                {
+                    "effect": "(not (ismoving robot1 roomB roomA))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "effect": "(not (inMovement robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "endMoving_robot1_roomB_roomC",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(link roomB roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot1 roomB roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(distanceRun robot1 roomB roomC)(distance roomB roomC))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot1 roomB roomC)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomB",
+                                "roomC"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomB roomC)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomB",
+                                "roomC"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(atRobot robot1 roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomC"
+                    ]
+                },
+                {
+                    "effect": "(not (ismoving robot1 roomB roomC))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "effect": "(not (inMovement robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "endMoving_robot1_roomC_roomB",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(link roomC roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot1 roomC roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot1) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(distanceRun robot1 roomC roomB)(distance roomC roomB))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot1 roomC roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot1",
+                                "roomC",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomC roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomC",
+                                "roomB"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(atRobot robot1 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot1",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(not (ismoving robot1 roomC roomB))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot1",
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(not (inMovement robot1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot1"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "endMoving_robot2_roomA_roomB",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(link roomA roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot2 roomA roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(distanceRun robot2 roomA roomB)(distance roomA roomB))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot2 roomA roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomA",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomA roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomA",
+                                "roomB"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(atRobot robot2 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(not (ismoving robot2 roomA roomB))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(not (inMovement robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "endMoving_robot2_roomB_roomA",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(link roomB roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot2 roomB roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(distanceRun robot2 roomB roomA)(distance roomB roomA))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot2 roomB roomA)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomB",
+                                "roomA"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomB roomA)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomB",
+                                "roomA"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(atRobot robot2 roomA)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomA"
+                    ]
+                },
+                {
+                    "effect": "(not (ismoving robot2 roomB roomA))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "effect": "(not (inMovement robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "endMoving_robot2_roomB_roomC",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(link roomB roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot2 roomB roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(distanceRun robot2 roomB roomC)(distance roomB roomC))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot2 roomB roomC)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomB",
+                                "roomC"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomB roomC)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomB",
+                                "roomC"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(atRobot robot2 roomC)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomC"
+                    ]
+                },
+                {
+                    "effect": "(not (ismoving robot2 roomB roomC))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "effect": "(not (inMovement robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "endMoving_robot2_roomC_roomB",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(link roomC roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "link",
+                    "Parameters": [
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(ismoving robot2 roomC roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "preconditionString": "(inMovement robot2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "preconditionString": "(>(battery robot2) 20)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(battery robot2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "battery",
+                            "Parameters": [
+                                "robot2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "20",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(distanceRun robot2 roomC roomB)(distance roomC roomB))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(distanceRun robot2 roomC roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distanceRun",
+                            "Parameters": [
+                                "robot2",
+                                "roomC",
+                                "roomB"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(distance roomC roomB)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "distance",
+                            "Parameters": [
+                                "roomC",
+                                "roomB"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(atRobot robot2 roomB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "atRobot",
+                    "Parameters": [
+                        "robot2",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(not (ismoving robot2 roomC roomB))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "ismoving",
+                    "Parameters": [
+                        "robot2",
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "effect": "(not (inMovement robot2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "inMovement",
+                    "Parameters": [
+                        "robot2"
+                    ]
+                }
+            ]
+        }
+    ]
+}

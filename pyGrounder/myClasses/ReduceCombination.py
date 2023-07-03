@@ -48,7 +48,7 @@ class ReduceCombination:
                     loop(expressionParameters, necessaryEffects)
             return necessaryEffects
 
-        # todo return if the fluent is numeric by checking if it's functions or not
+        # return if the fluent is numeric
         def numericCondition(p):
             pName = p['Name']
             for w in cls.domain['functions']:
@@ -56,7 +56,7 @@ class ReduceCombination:
                     return True
             return False
 
-        # todo return if the fluent is literal by checking if it's functions or not
+        # return if the fluent is literal
         def literal(p):
             pName = p['Name']
             for w in cls.domain['predicates']:
@@ -64,7 +64,7 @@ class ReduceCombination:
                     return True
             return False
 
-        # return if the fluent is literal by checking if it's operation or not
+        # return if the fluent is expression by checking it's attribute isOperation?
         def expression(p):
             if p['isOperation?']:
                 return True
@@ -128,7 +128,7 @@ class ReduceCombination:
 
         # reduce combinations in literal fluent
         def reduceSat(p):
-            # todo
+            # find the object types repeated in the parameters
             def findRepeatElements(myList):
                 repeatElements = []
                 for element in myList:
@@ -247,7 +247,6 @@ class ReduceCombination:
 
         # understand if the fluent is static, so it's never change during all the program execution
         def isStatic(v):
-
             # return list of effects which are overwritten
             def affected(t):
                 ne = []
@@ -286,7 +285,7 @@ class ReduceCombination:
                 return myList
 
             # check for each action/event/process
-            # 1° RETURN: static or not,
+            # 1° RETURN: static or not
             # 2° RETURN: if it's in problem.init or not
             AEP = cls.domain['actions'] + cls.domain['events'] + cls.domain['processes']
             name = None
@@ -338,7 +337,8 @@ class ReduceCombination:
             # return None and not add this operation in the final combinations
             # also check that this fluent is in preconditions
             if not static[0] and not static[1]:
-                if type(saveP) == 'pyGrounder.myClasses.Precondition.Precondition' and not fluent['isNegated?']:
+                print(type(saveP))
+                if str(type(saveP)) == "<class 'pyGrounder.myClasses.Precondition.Precondition'>":
                     operation = None
                 return operation
 
@@ -354,7 +354,8 @@ class ReduceCombination:
                         reduceExpression(fluent)
                 # finally, if the precondition is negated
                 # return None and not add this operation in the final combinations
-                elif type(saveP) == 'pyGrounder.myClasses.Precondition.Precondition' and fluent['isNegated?']:
+                elif str(type(saveP)) == "<class 'pyGrounder.myClasses.Precondition.Precondition'>" and fluent['isNegated?'] and static[0]:
+                    print(fluent)
                     operation = None
                     return operation
 

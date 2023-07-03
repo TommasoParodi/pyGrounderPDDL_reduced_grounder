@@ -1,0 +1,860 @@
+{
+    "domain": "car",
+    "requirements": [
+        ":fluents",
+        ":durative-actions",
+        ":duration-inequalities",
+        ":adl",
+        ":typing",
+        ":time"
+    ],
+    "types": [],
+    "constants": [],
+    "predicates": [
+        {
+            "predicateName": "alwaysfalse",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "landed",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "landing",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "thrusting",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "stop",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "block",
+            "predicateParameters": []
+        }
+    ],
+    "functions": [
+        {
+            "predicateName": "M",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "q",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "d",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "g",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "v",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "M_min",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "ISP",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "d_final",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "v_margin",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "d_margin",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "falling-time",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "thrust-duration",
+            "predicateParameters": []
+        }
+    ],
+    "actions": [
+        {
+            "actionName": "start_descent",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(stop)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "stop",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(landing)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "landing",
+                    "Parameters": []
+                },
+                {
+                    "effectString": "(assign(falling-time) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(falling-time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "falling-time",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "effect": "(not (stop))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "stop",
+                    "Parameters": []
+                }
+            ]
+        },
+        {
+            "actionName": "land",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(landing)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "landing",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<(v)(v_margin))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(v)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "v",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(v_margin)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "v_margin",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<(d)(d_final))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(d)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "d",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(d_final)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "d_final",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>(d)(-(d_final)(d_margin)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(d)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "d",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(-(d_final)(d_margin))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "-",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(d_final)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "d_final",
+                                    "Parameters": []
+                                },
+                                {
+                                    "preconditionString": "(d_margin)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "d_margin",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(landed)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "landed",
+                    "Parameters": []
+                },
+                {
+                    "effect": "(not (landing))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "landing",
+                    "Parameters": []
+                }
+            ]
+        },
+        {
+            "actionName": "start-thrust",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (thrusting))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "thrusting",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(landing)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "landing",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(thrusting)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "thrusting",
+                    "Parameters": []
+                },
+                {
+                    "effectString": "(assign(thrust-duration) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(thrust-duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "thrust-duration",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "stop-thrust",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(thrusting)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "thrusting",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (thrusting))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "thrusting",
+                    "Parameters": []
+                }
+            ]
+        }
+    ],
+    "processes": [
+        {
+            "processName": "falling",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(<(falling-time) 40)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(falling-time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "falling-time",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "40",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(landing)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "landing",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<(d)(d_final))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(d)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "d",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(d_final)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "d_final",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(d)(* #t(* 0.5(v))))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(d)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "d",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "(* #t(* 0.5(v)))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "(* 0.5(v))",
+                                    "isNegated?": false,
+                                    "isOperation?": true,
+                                    "Name": "*",
+                                    "Parameters": [
+                                        {
+                                            "effectString": "0.5",
+                                            "Name": "Constant",
+                                            "Parameters": [],
+                                            "isNegated?": false,
+                                            "isOperation?": false
+                                        },
+                                        {
+                                            "effect": "(v)",
+                                            "isNegated?": false,
+                                            "isOperation?": false,
+                                            "Name": "v",
+                                            "Parameters": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(v)(* #t(g)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(v)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "v",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "(* #t(g))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effect": "(g)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "g",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(falling-time)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(falling-time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "falling-time",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "thrust",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(<(thrust-duration)(/(-(M)(M_min))(q)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(thrust-duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "thrust-duration",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(/(-(M)(M_min))(q))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "/",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(-(M)(M_min))",
+                                    "isNegated?": false,
+                                    "isOperation?": true,
+                                    "Name": "-",
+                                    "Parameters": [
+                                        {
+                                            "preconditionString": "(M)",
+                                            "isNegated?": false,
+                                            "isOperation?": false,
+                                            "Name": "M",
+                                            "Parameters": []
+                                        },
+                                        {
+                                            "preconditionString": "(M_min)",
+                                            "isNegated?": false,
+                                            "isOperation?": false,
+                                            "Name": "M_min",
+                                            "Parameters": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(q)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "q",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(landing)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "landing",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(thrusting)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "thrusting",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(decrease(v)(* #t(*(*(ISP)(g))(/(q)(M)))))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(v)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "v",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "(* #t(*(*(ISP)(g))(/(q)(M))))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "(*(*(ISP)(g))(/(q)(M)))",
+                                    "isNegated?": false,
+                                    "isOperation?": true,
+                                    "Name": "*",
+                                    "Parameters": [
+                                        {
+                                            "effectString": "(*(ISP)(g))",
+                                            "isNegated?": false,
+                                            "isOperation?": true,
+                                            "Name": "*",
+                                            "Parameters": [
+                                                {
+                                                    "effect": "(ISP)",
+                                                    "isNegated?": false,
+                                                    "isOperation?": false,
+                                                    "Name": "ISP",
+                                                    "Parameters": []
+                                                },
+                                                {
+                                                    "effect": "(g)",
+                                                    "isNegated?": false,
+                                                    "isOperation?": false,
+                                                    "Name": "g",
+                                                    "Parameters": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "effectString": "(/(q)(M))",
+                                            "isNegated?": false,
+                                            "isOperation?": true,
+                                            "Name": "/",
+                                            "Parameters": [
+                                                {
+                                                    "effect": "(q)",
+                                                    "isNegated?": false,
+                                                    "isOperation?": false,
+                                                    "Name": "q",
+                                                    "Parameters": []
+                                                },
+                                                {
+                                                    "effect": "(M)",
+                                                    "isNegated?": false,
+                                                    "isOperation?": false,
+                                                    "Name": "M",
+                                                    "Parameters": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(decrease(M)(* #t(q)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(M)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "M",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "(* #t(q))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effect": "(q)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "q",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(thrust-duration)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(thrust-duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "thrust-duration",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "events": [
+        {
+            "eventName": "anti-crash",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( and(<(d)(d_final))(>(M)(M_min))))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "and",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(<(d)(d_final))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "<",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(d)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "d",
+                                    "Parameters": []
+                                },
+                                {
+                                    "preconditionString": "(d_final)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "d_final",
+                                    "Parameters": []
+                                }
+                            ]
+                        },
+                        {
+                            "preconditionString": "(>(M)(M_min))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": ">",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(M)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "M",
+                                    "Parameters": []
+                                },
+                                {
+                                    "preconditionString": "(M_min)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "M_min",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ]
+        }
+    ]
+}

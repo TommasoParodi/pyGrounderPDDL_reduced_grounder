@@ -1,0 +1,168 @@
+{
+    "problem": "descent_prob",
+    "domain": "descent",
+    "objects": [],
+    "init": [
+        {
+            "string": "(=(d_final)100)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "d_final",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "100"
+                }
+            ]
+        },
+        {
+            "string": "(=(d_margin)10)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "d_margin",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "10"
+                }
+            ]
+        },
+        {
+            "string": "(=(v_margin)10)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "v_margin",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "10"
+                }
+            ]
+        },
+        {
+            "string": "(=(v)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "v",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(d)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "d",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(g)9.8)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "g",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "9.8"
+                }
+            ]
+        },
+        {
+            "string": "(=(M)10000)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "M",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "10000"
+                }
+            ]
+        },
+        {
+            "string": "(=(M_min)5000)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "M_min",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "5000"
+                }
+            ]
+        },
+        {
+            "string": "(=(q)50)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "q",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "50"
+                }
+            ]
+        },
+        {
+            "string": "(=(ISP)311)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "ISP",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "311"
+                }
+            ]
+        },
+        {
+            "string": "(stop)",
+            "isAssignment?": false,
+            "predName": "stop",
+            "predObjects": []
+        }
+    ],
+    "goal": [
+        {
+            "string": "(landed)",
+            "predName": "landed",
+            "predObjects": [],
+            "isOperation?": false,
+            "isNegated?": false
+        },
+        {
+            "string": "(not(block))",
+            "isOperation?": false,
+            "isNegated?": true,
+            "predName": "(block)"
+        }
+    ]
+}

@@ -1,0 +1,1024 @@
+{
+    "domain": "generator2",
+    "requirements": [
+        ":fluents",
+        ":durative-actions",
+        ":duration-inequalities",
+        ":adl",
+        ":typing",
+        ":time"
+    ],
+    "types": [
+        "generalBattery",
+        "battery"
+    ],
+    "constants": [
+        {
+            "constantName": "GB",
+            "constantType": "generalBattery"
+        },
+        {
+            "constantName": "b1",
+            "constantType": "battery"
+        },
+        {
+            "constantName": "b2",
+            "constantType": "battery"
+        },
+        {
+            "constantName": "b3",
+            "constantType": "battery"
+        }
+    ],
+    "predicates": [
+        {
+            "predicateName": "alwaysfalse",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "gboff",
+            "predicateParameters": [
+                {
+                    "parameterName": "?gb",
+                    "parameterType": "generalBattery"
+                }
+            ]
+        },
+        {
+            "predicateName": "gbon",
+            "predicateParameters": [
+                {
+                    "parameterName": "?gb",
+                    "parameterType": "generalBattery"
+                }
+            ]
+        },
+        {
+            "predicateName": "off",
+            "predicateParameters": [
+                {
+                    "parameterName": "?b",
+                    "parameterType": "battery"
+                }
+            ]
+        },
+        {
+            "predicateName": "on",
+            "predicateParameters": [
+                {
+                    "parameterName": "?b",
+                    "parameterType": "battery"
+                }
+            ]
+        },
+        {
+            "predicateName": "night",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "sunexposure",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "solarsupport",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "datatosend",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "datasent",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "roversafe",
+            "predicateParameters": []
+        }
+    ],
+    "functions": [
+        {
+            "predicateName": "roverenergy",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "SoC",
+            "predicateParameters": [
+                {
+                    "parameterName": "?b",
+                    "parameterType": "battery"
+                }
+            ]
+        },
+        {
+            "predicateName": "time",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "sunexposure_time",
+            "predicateParameters": []
+        }
+    ],
+    "actions": [
+        {
+            "actionName": "switchGenBatteryOn_GB",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(gboff GB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "gboff",
+                    "Parameters": [
+                        "GB"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(gbon GB)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "gbon",
+                    "Parameters": [
+                        "GB"
+                    ]
+                },
+                {
+                    "effect": "(not (gboff GB))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "gboff",
+                    "Parameters": [
+                        "GB"
+                    ]
+                },
+                {
+                    "effect": "(roversafe)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "roversafe",
+                    "Parameters": []
+                },
+                {
+                    "effectString": "(increase(roverenergy) 100)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(roverenergy)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "roverenergy",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "100",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_useBattery_b1",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(off b1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "off",
+                    "Parameters": [
+                        "b1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "(increase(roverenergy) 10)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(roverenergy)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "roverenergy",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "10",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "effect": "(on b1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "on",
+                    "Parameters": [
+                        "b1"
+                    ]
+                },
+                {
+                    "effect": "(not (off b1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "off",
+                    "Parameters": [
+                        "b1"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_useBattery_b2",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(off b2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "off",
+                    "Parameters": [
+                        "b2"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "(increase(roverenergy) 10)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(roverenergy)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "roverenergy",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "10",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "effect": "(on b2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "on",
+                    "Parameters": [
+                        "b2"
+                    ]
+                },
+                {
+                    "effect": "(not (off b2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "off",
+                    "Parameters": [
+                        "b2"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_useBattery_b3",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(off b3)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "off",
+                    "Parameters": [
+                        "b3"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "(increase(roverenergy) 10)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(roverenergy)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "roverenergy",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "10",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "effect": "(on b3)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "on",
+                    "Parameters": [
+                        "b3"
+                    ]
+                },
+                {
+                    "effect": "(not (off b3))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "off",
+                    "Parameters": [
+                        "b3"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "sendData",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(datatosend)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "datatosend",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(roversafe)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "roversafe",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(>=(roverenergy) 500)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(roverenergy)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "roverenergy",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "500",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(datasent)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "datasent",
+                    "Parameters": []
+                },
+                {
+                    "effect": "(not (datatosend))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "datatosend",
+                    "Parameters": []
+                }
+            ]
+        }
+    ],
+    "processes": [
+        {
+            "processName": "useBattery_b1",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(on b1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "on",
+                    "Parameters": [
+                        "b1"
+                    ]
+                },
+                {
+                    "preconditionString": "(roversafe)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "roversafe",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(>(SoC b1) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(SoC b1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "SoC",
+                            "Parameters": [
+                                "b1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(decrease(SoC b1)(* #t 1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(SoC b1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "SoC",
+                            "Parameters": [
+                                "b1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "useBattery_b2",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(on b2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "on",
+                    "Parameters": [
+                        "b2"
+                    ]
+                },
+                {
+                    "preconditionString": "(roversafe)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "roversafe",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(>(SoC b2) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(SoC b2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "SoC",
+                            "Parameters": [
+                                "b2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(decrease(SoC b2)(* #t 1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(SoC b2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "SoC",
+                            "Parameters": [
+                                "b2"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "useBattery_b3",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(on b3)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "on",
+                    "Parameters": [
+                        "b3"
+                    ]
+                },
+                {
+                    "preconditionString": "(roversafe)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "roversafe",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(>(SoC b3) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(SoC b3)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "SoC",
+                            "Parameters": [
+                                "b3"
+                            ]
+                        },
+                        {
+                            "preconditionString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(decrease(SoC b3)(* #t 1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(SoC b3)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "SoC",
+                            "Parameters": [
+                                "b3"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "passingTime",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(not (alwaysfalse))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "alwaysfalse",
+                    "Parameters": []
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(time)(* #t 1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "(* #t 1)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "events": [
+        {
+            "eventName": "end_useBattery_b1",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(on b1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "on",
+                    "Parameters": [
+                        "b1"
+                    ]
+                },
+                {
+                    "preconditionString": "(or(roversafe)(not( >(SoC b1) 0)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "or",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(roversafe)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "roversafe",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(not( >(SoC b1) 0))",
+                            "isNegated?": true,
+                            "isOperation?": true,
+                            "Name": ">",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(SoC b1)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "SoC",
+                                    "Parameters": [
+                                        "b1"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(not (on b1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "on",
+                    "Parameters": [
+                        "b1"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "end_useBattery_b2",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(on b2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "on",
+                    "Parameters": [
+                        "b2"
+                    ]
+                },
+                {
+                    "preconditionString": "(or(roversafe)(not( >(SoC b2) 0)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "or",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(roversafe)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "roversafe",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(not( >(SoC b2) 0))",
+                            "isNegated?": true,
+                            "isOperation?": true,
+                            "Name": ">",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(SoC b2)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "SoC",
+                                    "Parameters": [
+                                        "b2"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(not (on b2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "on",
+                    "Parameters": [
+                        "b2"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "end_useBattery_b3",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(on b3)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "on",
+                    "Parameters": [
+                        "b3"
+                    ]
+                },
+                {
+                    "preconditionString": "(or(roversafe)(not( >(SoC b3) 0)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "or",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(roversafe)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "roversafe",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(not( >(SoC b3) 0))",
+                            "isNegated?": true,
+                            "isOperation?": true,
+                            "Name": ">",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(SoC b3)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "SoC",
+                                    "Parameters": [
+                                        "b3"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(not (on b3))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "on",
+                    "Parameters": [
+                        "b3"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "sunshine",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(night)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "night",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(sunexposure)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "sunexposure",
+                    "Parameters": []
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(not (night))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "night",
+                    "Parameters": []
+                },
+                {
+                    "effectString": "(increase(roverenergy) 400)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(roverenergy)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "roverenergy",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "400",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "sunexposure_event",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(>=(time)(sunexposure_time))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(sunexposure_time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "sunexposure_time",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (sunexposure))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "sunexposure",
+                    "Parameters": []
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(sunexposure)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "sunexposure",
+                    "Parameters": []
+                }
+            ]
+        }
+    ]
+}

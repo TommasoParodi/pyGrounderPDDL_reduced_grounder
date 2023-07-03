@@ -1,0 +1,861 @@
+{
+    "domain": "paco3d",
+    "requirements": [
+        ":fluents",
+        ":durative-actions",
+        ":duration-inequalities",
+        ":adl",
+        ":typing",
+        ":time"
+    ],
+    "types": [
+        "link",
+        "axis"
+    ],
+    "predicates": [
+        {
+            "predicateName": "in-use",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "connected",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l1",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                }
+            ]
+        },
+        {
+            "predicateName": "affects",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l1",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                }
+            ]
+        },
+        {
+            "predicateName": "freeToMove",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                }
+            ]
+        },
+        {
+            "predicateName": "increasing_angle-baxter",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ]
+        },
+        {
+            "predicateName": "decreasing_angle-baxter",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ]
+        },
+        {
+            "predicateName": "increasing_angle-gravity",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                }
+            ]
+        },
+        {
+            "predicateName": "decreasing_angle-gravity",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                }
+            ]
+        },
+        {
+            "predicateName": "alwaysfalse",
+            "predicateParameters": []
+        }
+    ],
+    "functions": [
+        {
+            "predicateName": "angle",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ]
+        },
+        {
+            "predicateName": "speed-i",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "speed-d",
+            "predicateParameters": []
+        }
+    ],
+    "actions": [
+        {
+            "actionName": "start_movement_increase",
+            "actionParameters": [
+                {
+                    "parameterName": "?l1",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(connected ?l1 ?l2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "connected",
+                    "Parameters": [
+                        "?l1",
+                        "?l2"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (in-use))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "in-use",
+                    "Parameters": []
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(in-use)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "in-use",
+                    "Parameters": []
+                },
+                {
+                    "effect": "(not (freeToMove ?l2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "freeToMove",
+                    "Parameters": [
+                        "?l2"
+                    ]
+                },
+                {
+                    "effect": "(not (freeToMove ?l1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "freeToMove",
+                    "Parameters": [
+                        "?l1"
+                    ]
+                },
+                {
+                    "effect": "(increasing_angle-baxter ?l2 ?x)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "increasing_angle-baxter",
+                    "Parameters": [
+                        "?l2",
+                        "?x"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "stop_movement_increase",
+            "actionParameters": [
+                {
+                    "parameterName": "?l1",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(increasing_angle-baxter ?l2 ?x)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "increasing_angle-baxter",
+                    "Parameters": [
+                        "?l2",
+                        "?x"
+                    ]
+                },
+                {
+                    "preconditionString": "(connected ?l1 ?l2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "connected",
+                    "Parameters": [
+                        "?l1",
+                        "?l2"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (in-use))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "in-use",
+                    "Parameters": []
+                },
+                {
+                    "effect": "(freeToMove ?l2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "freeToMove",
+                    "Parameters": [
+                        "?l2"
+                    ]
+                },
+                {
+                    "effect": "(freeToMove ?l1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "freeToMove",
+                    "Parameters": [
+                        "?l1"
+                    ]
+                },
+                {
+                    "effect": "(not (increasing_angle-baxter ?l2 ?x))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "increasing_angle-baxter",
+                    "Parameters": [
+                        "?l2",
+                        "?x"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_movement_decrease",
+            "actionParameters": [
+                {
+                    "parameterName": "?l1",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(connected ?l1 ?l2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "connected",
+                    "Parameters": [
+                        "?l1",
+                        "?l2"
+                    ]
+                },
+                {
+                    "preconditionString": "(not (in-use))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "in-use",
+                    "Parameters": []
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(in-use)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "in-use",
+                    "Parameters": []
+                },
+                {
+                    "effect": "(not (freeToMove ?l2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "freeToMove",
+                    "Parameters": [
+                        "?l2"
+                    ]
+                },
+                {
+                    "effect": "(not (freeToMove ?l1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "freeToMove",
+                    "Parameters": [
+                        "?l1"
+                    ]
+                },
+                {
+                    "effect": "(decreasing_angle-baxter ?l2 ?x)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "decreasing_angle-baxter",
+                    "Parameters": [
+                        "?l2",
+                        "?x"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "stop_movement_decrease",
+            "actionParameters": [
+                {
+                    "parameterName": "?l1",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(decreasing_angle-baxter ?l2 ?x)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "decreasing_angle-baxter",
+                    "Parameters": [
+                        "?l2",
+                        "?x"
+                    ]
+                },
+                {
+                    "preconditionString": "(connected ?l1 ?l2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "connected",
+                    "Parameters": [
+                        "?l1",
+                        "?l2"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (in-use))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "in-use",
+                    "Parameters": []
+                },
+                {
+                    "effect": "(freeToMove ?l2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "freeToMove",
+                    "Parameters": [
+                        "?l2"
+                    ]
+                },
+                {
+                    "effect": "(freeToMove ?l1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "freeToMove",
+                    "Parameters": [
+                        "?l1"
+                    ]
+                },
+                {
+                    "effect": "(not (decreasing_angle-baxter ?l2 ?x))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "decreasing_angle-baxter",
+                    "Parameters": [
+                        "?l2",
+                        "?x"
+                    ]
+                }
+            ]
+        }
+    ],
+    "processes": [
+        {
+            "processName": "move_angle_increase",
+            "processParameters": [
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(increasing_angle-baxter ?l2 ?x)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "increasing_angle-baxter",
+                    "Parameters": [
+                        "?l2",
+                        "?x"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase (angle ?l2 ?x) (* #t (speed-i)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(angle ?l2 ?x)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "angle",
+                            "Parameters": [
+                                "?l2",
+                                "?x"
+                            ]
+                        },
+                        {
+                            "effectString": "( (* #t (speed-i)))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effect": "(speed-i)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "speed-i",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "move_angle_decrease",
+            "processParameters": [
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(decreasing_angle-baxter ?l2 ?x)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "decreasing_angle-baxter",
+                    "Parameters": [
+                        "?l2",
+                        "?x"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(decrease (angle ?l2 ?x) (* #t (speed-d)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(angle ?l2 ?x)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "angle",
+                            "Parameters": [
+                                "?l2",
+                                "?x"
+                            ]
+                        },
+                        {
+                            "effectString": "( (* #t (speed-d)))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effect": "(speed-d)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "speed-d",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "propagate_move_angle_decrease",
+            "processParameters": [
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?l3",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(decreasing_angle-baxter ?l2 ?x)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "decreasing_angle-baxter",
+                    "Parameters": [
+                        "?l2",
+                        "?x"
+                    ]
+                },
+                {
+                    "preconditionString": "(affects ?l2 ?l3)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "affects",
+                    "Parameters": [
+                        "?l2",
+                        "?l3"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(decrease (angle ?l3 ?x) (* #t (speed-d)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(angle ?l3 ?x)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "angle",
+                            "Parameters": [
+                                "?l3",
+                                "?x"
+                            ]
+                        },
+                        {
+                            "effectString": "( (* #t (speed-d)))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effect": "(speed-d)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "speed-d",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "propagate_move_angle_increase",
+            "processParameters": [
+                {
+                    "parameterName": "?l2",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?l3",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(increasing_angle-baxter ?l2 ?x)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "increasing_angle-baxter",
+                    "Parameters": [
+                        "?l2",
+                        "?x"
+                    ]
+                },
+                {
+                    "preconditionString": "(affects ?l2 ?l3)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "affects",
+                    "Parameters": [
+                        "?l2",
+                        "?l3"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase (angle ?l3 ?x) (* #t (speed-i)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(angle ?l3 ?x)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "angle",
+                            "Parameters": [
+                                "?l3",
+                                "?x"
+                            ]
+                        },
+                        {
+                            "effectString": "( (* #t (speed-i)))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effect": "(speed-i)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "speed-i",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "events": [
+        {
+            "eventName": "back-to-zero",
+            "eventParameters": [
+                {
+                    "parameterName": "?l3",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(> (angle ?l3 ?x)360)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(angle ?l3 ?x)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "angle",
+                            "Parameters": [
+                                "?l3",
+                                "?x"
+                            ]
+                        },
+                        {
+                            "preconditionString": "360",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effectString": "(assign (angle ?l3 ?x)0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(angle ?l3 ?x)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "angle",
+                            "Parameters": [
+                                "?l3",
+                                "?x"
+                            ]
+                        },
+                        {
+                            "effectString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "back-to-360",
+            "eventParameters": [
+                {
+                    "parameterName": "?l3",
+                    "parameterType": "link"
+                },
+                {
+                    "parameterName": "?x",
+                    "parameterType": "axis"
+                }
+            ],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(< (angle ?l3 ?x)0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(angle ?l3 ?x)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "angle",
+                            "Parameters": [
+                                "?l3",
+                                "?x"
+                            ]
+                        },
+                        {
+                            "preconditionString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effectString": "(assign (angle ?l3 ?x)360)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(angle ?l3 ?x)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "angle",
+                            "Parameters": [
+                                "?l3",
+                                "?x"
+                            ]
+                        },
+                        {
+                            "effectString": "360",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

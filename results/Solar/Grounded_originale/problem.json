@@ -1,0 +1,165 @@
+{
+    "problem": "run-generator2",
+    "domain": "generator",
+    "objects": [
+        {
+            "objectType": "generalBattery",
+            "objectIstances": [
+                "GB"
+            ]
+        },
+        {
+            "objectType": "battery",
+            "objectIstances": [
+                "b1",
+                "b2",
+                "b3"
+            ]
+        }
+    ],
+    "init": [
+        {
+            "string": "(=(roverenergy)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "roverenergy",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(night)",
+            "isAssignment?": false,
+            "predName": "night",
+            "predObjects": []
+        },
+        {
+            "string": "(datatosend)",
+            "isAssignment?": false,
+            "predName": "datatosend",
+            "predObjects": []
+        },
+        {
+            "string": "(gboffGB)",
+            "isAssignment?": false,
+            "predName": "gboff",
+            "predObjects": [
+                "GB"
+            ]
+        },
+        {
+            "string": "(=(SoCb1)40)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "SoC",
+                    "operandObjects": [
+                        "b1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "40"
+                }
+            ]
+        },
+        {
+            "string": "(offb1)",
+            "isAssignment?": false,
+            "predName": "off",
+            "predObjects": [
+                "b1"
+            ]
+        },
+        {
+            "string": "(offb2)",
+            "isAssignment?": false,
+            "predName": "off",
+            "predObjects": [
+                "b2"
+            ]
+        },
+        {
+            "string": "(=(SoCb2)80)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "SoC",
+                    "operandObjects": [
+                        "b2"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "80"
+                }
+            ]
+        },
+        {
+            "string": "(offb3)",
+            "isAssignment?": false,
+            "predName": "off",
+            "predObjects": [
+                "b3"
+            ]
+        },
+        {
+            "string": "(=(SoCb3)100)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "SoC",
+                    "operandObjects": [
+                        "b3"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "100"
+                }
+            ]
+        },
+        {
+            "string": "(=(sunexposure_time)50.0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "sunexposure_time",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "50.0"
+                }
+            ]
+        },
+        {
+            "string": "(=(time)0.0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "time",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0.0"
+                }
+            ]
+        }
+    ],
+    "goal": [
+        {
+            "string": "(datasent)",
+            "predName": "datasent",
+            "predObjects": [],
+            "isOperation?": false,
+            "isNegated?": false
+        }
+    ]
+}

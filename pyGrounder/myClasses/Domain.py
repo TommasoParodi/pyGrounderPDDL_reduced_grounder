@@ -412,15 +412,15 @@ class Domain:
                 preconditions = operation.preconditions
                 effects = operation.effects
                 combinations = get_combinations(objects, parameters)
+                print(str(len(combinations)))
                 # create reduce combination object with for every specific operation and reduce its combinations
                 reduceCombinations = ReduceCombination(combinations, problem, domainAsDict())
                 op = reduceCombinations.reduceGrounderCombination(operation)
-                # if reduction process return itself, the operation is a unique combination without parameters to combinate
-                if type(op) == ['pyGrounder.myClasses.Action.Action', 'pyGrounder.myClasses.Event.Event', 'pyGrounder.myClasses.Process.Process']:
-                    return op
+                print(str(len(combinations)))
+                print("\n")
                 # if the reduction process return None, I won't add in the final combinations because never reachable
                 # otherwise I'll add all the combinations that I got previously
-                elif op != None:
+                if op != None:
                     for combination in combinations:
                         if operationType == "action":
                             result.append(Action(name=getGroundedName(name, combination), parameters=[],

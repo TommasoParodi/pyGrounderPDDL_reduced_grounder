@@ -1,0 +1,314 @@
+{
+    "problem": "example",
+    "domain": "paco3d",
+    "objects": [
+        {
+            "objectType": "link",
+            "objectIstances": [
+                "L1",
+                "L2",
+                "L3",
+                "L4"
+            ]
+        },
+        {
+            "objectType": "axis",
+            "objectIstances": [
+                "xyaxes",
+                "ZAXES"
+            ]
+        }
+    ],
+    "init": [
+        {
+            "string": "(=(speed-i)10)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "speed-i",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "10"
+                }
+            ]
+        },
+        {
+            "string": "(=(speed-d)10)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "speed-d",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "10"
+                }
+            ]
+        },
+        {
+            "string": "(=(angleL1xyaxes)64.6)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "angle",
+                    "operandObjects": [
+                        "L1",
+                        "xyaxes"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "64.6"
+                }
+            ]
+        },
+        {
+            "string": "(=(angleL1ZAXES)323.2)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "angle",
+                    "operandObjects": [
+                        "L1",
+                        "ZAXES"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "323.2"
+                }
+            ]
+        },
+        {
+            "string": "(=(angleL2xyaxes)261.6)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "angle",
+                    "operandObjects": [
+                        "L2",
+                        "xyaxes"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "261.6"
+                }
+            ]
+        },
+        {
+            "string": "(=(angleL2ZAXES)122.1)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "angle",
+                    "operandObjects": [
+                        "L2",
+                        "ZAXES"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "122.1"
+                }
+            ]
+        },
+        {
+            "string": "(=(angleL3xyaxes)10.3)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "angle",
+                    "operandObjects": [
+                        "L3",
+                        "xyaxes"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "10.3"
+                }
+            ]
+        },
+        {
+            "string": "(=(angleL3ZAXES)21.5)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "angle",
+                    "operandObjects": [
+                        "L3",
+                        "ZAXES"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "21.5"
+                }
+            ]
+        },
+        {
+            "string": "(=(angleL4xyaxes)189.6)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "angle",
+                    "operandObjects": [
+                        "L4",
+                        "xyaxes"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "189.6"
+                }
+            ]
+        },
+        {
+            "string": "(=(angleL4ZAXES)302.3)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "angle",
+                    "operandObjects": [
+                        "L4",
+                        "ZAXES"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "302.3"
+                }
+            ]
+        },
+        {
+            "string": "(freeToMoveL1)",
+            "isAssignment?": false,
+            "predName": "freeToMove",
+            "predObjects": [
+                "L1"
+            ]
+        },
+        {
+            "string": "(freeToMoveL2)",
+            "isAssignment?": false,
+            "predName": "freeToMove",
+            "predObjects": [
+                "L2"
+            ]
+        },
+        {
+            "string": "(freeToMoveL3)",
+            "isAssignment?": false,
+            "predName": "freeToMove",
+            "predObjects": [
+                "L3"
+            ]
+        },
+        {
+            "string": "(freeToMoveL4)",
+            "isAssignment?": false,
+            "predName": "freeToMove",
+            "predObjects": [
+                "L4"
+            ]
+        },
+        {
+            "string": "(connectedL1L2)",
+            "isAssignment?": false,
+            "predName": "connected",
+            "predObjects": [
+                "L1",
+                "L2"
+            ]
+        },
+        {
+            "string": "(connectedL2L3)",
+            "isAssignment?": false,
+            "predName": "connected",
+            "predObjects": [
+                "L2",
+                "L3"
+            ]
+        },
+        {
+            "string": "(connectedL3L4)",
+            "isAssignment?": false,
+            "predName": "connected",
+            "predObjects": [
+                "L3",
+                "L4"
+            ]
+        },
+        {
+            "string": "(affectsL2L3)",
+            "isAssignment?": false,
+            "predName": "affects",
+            "predObjects": [
+                "L2",
+                "L3"
+            ]
+        },
+        {
+            "string": "(affectsL2L4)",
+            "isAssignment?": false,
+            "predName": "affects",
+            "predObjects": [
+                "L2",
+                "L4"
+            ]
+        },
+        {
+            "string": "(affectsL3L4)",
+            "isAssignment?": false,
+            "predName": "affects",
+            "predObjects": [
+                "L3",
+                "L4"
+            ]
+        }
+    ],
+    "goal": [
+        {
+            "string": "(>(angleL3xyaxes)3.5)",
+            "predName": ">",
+            "isOperation?": true,
+            "isNegated?": false,
+            "predObjects": [
+                {
+                    "predName": "angle",
+                    "predObjects": [
+                        "L3",
+                        "xyaxes"
+                    ]
+                },
+                {
+                    "predName": "Constant",
+                    "value": "3.5"
+                }
+            ]
+        },
+        {
+            "string": "(>(angleL3ZAXES)236.9)",
+            "predName": ">",
+            "isOperation?": true,
+            "isNegated?": false,
+            "predObjects": [
+                {
+                    "predName": "angle",
+                    "predObjects": [
+                        "L3",
+                        "ZAXES"
+                    ]
+                },
+                {
+                    "predName": "Constant",
+                    "value": "236.9"
+                }
+            ]
+        }
+    ]
+}

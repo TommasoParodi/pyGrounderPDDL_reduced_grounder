@@ -1,0 +1,809 @@
+{
+    "domain": "generator_linear_mt",
+    "requirements": [
+        ":fluents",
+        ":durative-actions",
+        ":duration-inequalities",
+        ":adl",
+        ":typing",
+        ":time"
+    ],
+    "types": [
+        "generator",
+        "tank"
+    ],
+    "predicates": [
+        {
+            "predicateName": "online",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "not_online",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "available",
+            "predicateParameters": [
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ]
+        },
+        {
+            "predicateName": "not_available",
+            "predicateParameters": [
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ]
+        },
+        {
+            "predicateName": "generator-ran",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "using",
+            "predicateParameters": [
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ]
+        },
+        {
+            "predicateName": "block",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "block_refuel",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                },
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ]
+        },
+        {
+            "predicateName": "block_generator",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "closed",
+            "predicateParameters": []
+        }
+    ],
+    "functions": [
+        {
+            "predicateName": "fuelLevel",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "capacity",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "generator_running",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "refuel_running",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                },
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ]
+        },
+        {
+            "predicateName": "generator_duration",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "refuel_duration",
+            "predicateParameters": []
+        }
+    ],
+    "actions": [
+        {
+            "actionName": "turn_on",
+            "actionParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not_online ?g)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "not_online",
+                    "Parameters": [
+                        "?g"
+                    ]
+                },
+                {
+                    "preconditionString": "(< (generator_running ?g) (generator_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(generator_running ?g)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "generator_running",
+                            "Parameters": [
+                                "?g"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(generator_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "generator_duration",
+                            "Parameters": []
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(online ?g)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "online",
+                    "Parameters": [
+                        "?g"
+                    ]
+                },
+                {
+                    "effect": "(not (not_online ?g))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "not_online",
+                    "Parameters": [
+                        "?g"
+                    ]
+                },
+                {
+                    "effectString": "(assign (generator_running ?g)0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(generator_running ?g)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "generator_running",
+                            "Parameters": [
+                                "?g"
+                            ]
+                        },
+                        {
+                            "effectString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_refueling",
+            "actionParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                },
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(available ?t)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "?t"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (available ?t))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "?t"
+                    ]
+                },
+                {
+                    "effect": "(using ?t)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "?t"
+                    ]
+                }
+            ]
+        }
+    ],
+    "processes": [
+        {
+            "processName": "generate_power",
+            "processParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(online ?g)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "online",
+                    "Parameters": [
+                        "?g"
+                    ]
+                },
+                {
+                    "preconditionString": "(> (fuelLevel ?g)0.0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel ?g)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "?g"
+                            ]
+                        },
+                        {
+                            "preconditionString": "0.0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_generator ?g))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_generator",
+                    "Parameters": [
+                        "?g"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(decrease (fuelLevel ?g) (* #t1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel ?g)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "?g"
+                            ]
+                        },
+                        {
+                            "effectString": "( (* #t1.0))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase (generator_running ?g) (* #t1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(generator_running ?g)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "generator_running",
+                            "Parameters": [
+                                "?g"
+                            ]
+                        },
+                        {
+                            "effectString": "( (* #t1.0))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "refuel_generator",
+            "processParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                },
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(using ?t)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "?t"
+                    ]
+                },
+                {
+                    "preconditionString": "(< (fuelLevel ?g) (capacity ?g))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel ?g)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "?g"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity ?g)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "?g"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(< (refuel_running ?g ?t) (refuel_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running ?g ?t)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "?g",
+                                "?t"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel ?g ?t))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "?g",
+                        "?t"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase (fuelLevel ?g) (* #t2.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel ?g)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "?g"
+                            ]
+                        },
+                        {
+                            "effectString": "( (* #t2.0))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "2.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase (refuel_running ?g ?t) (* #t1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(refuel_running ?g ?t)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "?g",
+                                "?t"
+                            ]
+                        },
+                        {
+                            "effectString": "( (* #t1.0))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "events": [
+        {
+            "eventName": "min_generator_fuel",
+            "eventParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not (>= (fuelLevel ?g)0.0))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel ?g)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "?g"
+                            ]
+                        },
+                        {
+                            "preconditionString": "0.0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ]
+        },
+        {
+            "eventName": "max_generator_fuel",
+            "eventParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not (<= (fuelLevel ?g) (capacity ?g)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel ?g)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "?g"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity ?g)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "?g"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ]
+        },
+        {
+            "eventName": "refuel_duration_block",
+            "eventParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                },
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not (<= (refuel_running ?g ?t) (refuel_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running ?g ?t)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "?g",
+                                "?t"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel ?g ?t))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "?g",
+                        "?t"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_refuel ?g ?t)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "?g",
+                        "?t"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "generator_duration_block",
+            "eventParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not (<= (generator_running ?g) (generator_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(generator_running ?g)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "generator_running",
+                            "Parameters": [
+                                "?g"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(generator_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "generator_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_generator ?g))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_generator",
+                    "Parameters": [
+                        "?g"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_generator ?g)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_generator",
+                    "Parameters": [
+                        "?g"
+                    ]
+                }
+            ]
+        }
+    ]
+}

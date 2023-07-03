@@ -1,0 +1,1952 @@
+{
+    "domain": "hvac",
+    "requirements": [
+        ":fluents",
+        ":durative-actions",
+        ":adl",
+        ":typing",
+        ":time"
+    ],
+    "types": [
+        "room",
+        "request",
+        "-",
+        "object"
+    ],
+    "constants": [
+        {
+            "constantName": "r1",
+            "constantType": "room"
+        },
+        {
+            "constantName": "k1",
+            "constantType": "request"
+        },
+        {
+            "constantName": "k2",
+            "constantType": "request"
+        },
+        {
+            "constantName": "k3",
+            "constantType": "request"
+        },
+        {
+            "constantName": "k4",
+            "constantType": "request"
+        },
+        {
+            "constantName": "k5",
+            "constantType": "request"
+        },
+        {
+            "constantName": "k6",
+            "constantType": "request"
+        },
+        {
+            "constantName": "k7",
+            "constantType": "request"
+        },
+        {
+            "constantName": "k8",
+            "constantType": "request"
+        },
+        {
+            "constantName": "k9",
+            "constantType": "request"
+        },
+        {
+            "constantName": "k10",
+            "constantType": "request"
+        }
+    ],
+    "predicates": [
+        {
+            "predicateName": "block",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "alwaysfalse",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "satisfied",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "request"
+                }
+            ]
+        }
+    ],
+    "functions": [
+        {
+            "predicateName": "air_flow",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "predicateName": "temp",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "predicateName": "temp_sa",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "predicateName": "time",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "time_requested",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?r",
+                    "parameterType": "request"
+                }
+            ]
+        },
+        {
+            "predicateName": "temp_requested",
+            "predicateParameters": [
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?r",
+                    "parameterType": "request"
+                }
+            ]
+        },
+        {
+            "predicateName": "comfort",
+            "predicateParameters": []
+        }
+    ],
+    "actions": [
+        {
+            "actionName": "satisfier_r1_k1",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<=(temp r1)(+(temp_requested r1 k1)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(+(temp_requested r1 k1)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "+",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k1)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k1"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(temp r1)(-(temp_requested r1 k1)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(-(temp_requested r1 k1)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "-",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k1)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k1"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(=(time)(time_requested r1 k1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(time_requested r1 k1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time_requested",
+                            "Parameters": [
+                                "r1",
+                                "k1"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(satisfied k1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "satisfied",
+                    "Parameters": [
+                        "k1"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "satisfier_r1_k2",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<=(temp r1)(+(temp_requested r1 k2)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(+(temp_requested r1 k2)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "+",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k2)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k2"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(temp r1)(-(temp_requested r1 k2)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(-(temp_requested r1 k2)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "-",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k2)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k2"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(=(time)(time_requested r1 k2))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(time_requested r1 k2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time_requested",
+                            "Parameters": [
+                                "r1",
+                                "k2"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(satisfied k2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "satisfied",
+                    "Parameters": [
+                        "k2"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "satisfier_r1_k3",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<=(temp r1)(+(temp_requested r1 k3)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(+(temp_requested r1 k3)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "+",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k3)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k3"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(temp r1)(-(temp_requested r1 k3)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(-(temp_requested r1 k3)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "-",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k3)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k3"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(=(time)(time_requested r1 k3))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(time_requested r1 k3)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time_requested",
+                            "Parameters": [
+                                "r1",
+                                "k3"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(satisfied k3)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "satisfied",
+                    "Parameters": [
+                        "k3"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "satisfier_r1_k4",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<=(temp r1)(+(temp_requested r1 k4)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(+(temp_requested r1 k4)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "+",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k4)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k4"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(temp r1)(-(temp_requested r1 k4)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(-(temp_requested r1 k4)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "-",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k4)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k4"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(=(time)(time_requested r1 k4))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(time_requested r1 k4)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time_requested",
+                            "Parameters": [
+                                "r1",
+                                "k4"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(satisfied k4)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "satisfied",
+                    "Parameters": [
+                        "k4"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "satisfier_r1_k5",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<=(temp r1)(+(temp_requested r1 k5)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(+(temp_requested r1 k5)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "+",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k5)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k5"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(temp r1)(-(temp_requested r1 k5)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(-(temp_requested r1 k5)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "-",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k5)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k5"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(=(time)(time_requested r1 k5))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(time_requested r1 k5)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time_requested",
+                            "Parameters": [
+                                "r1",
+                                "k5"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(satisfied k5)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "satisfied",
+                    "Parameters": [
+                        "k5"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "satisfier_r1_k6",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<=(temp r1)(+(temp_requested r1 k6)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(+(temp_requested r1 k6)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "+",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k6)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k6"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(temp r1)(-(temp_requested r1 k6)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(-(temp_requested r1 k6)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "-",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k6)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k6"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(=(time)(time_requested r1 k6))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(time_requested r1 k6)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time_requested",
+                            "Parameters": [
+                                "r1",
+                                "k6"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(satisfied k6)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "satisfied",
+                    "Parameters": [
+                        "k6"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "satisfier_r1_k7",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<=(temp r1)(+(temp_requested r1 k7)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(+(temp_requested r1 k7)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "+",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k7)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k7"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(temp r1)(-(temp_requested r1 k7)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(-(temp_requested r1 k7)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "-",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k7)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k7"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(=(time)(time_requested r1 k7))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(time_requested r1 k7)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time_requested",
+                            "Parameters": [
+                                "r1",
+                                "k7"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(satisfied k7)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "satisfied",
+                    "Parameters": [
+                        "k7"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "satisfier_r1_k8",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<=(temp r1)(+(temp_requested r1 k8)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(+(temp_requested r1 k8)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "+",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k8)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k8"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(temp r1)(-(temp_requested r1 k8)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(-(temp_requested r1 k8)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "-",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k8)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k8"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(=(time)(time_requested r1 k8))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(time_requested r1 k8)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time_requested",
+                            "Parameters": [
+                                "r1",
+                                "k8"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(satisfied k8)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "satisfied",
+                    "Parameters": [
+                        "k8"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "satisfier_r1_k9",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<=(temp r1)(+(temp_requested r1 k9)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(+(temp_requested r1 k9)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "+",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k9)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k9"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(temp r1)(-(temp_requested r1 k9)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(-(temp_requested r1 k9)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "-",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k9)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k9"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(=(time)(time_requested r1 k9))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(time_requested r1 k9)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time_requested",
+                            "Parameters": [
+                                "r1",
+                                "k9"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(satisfied k9)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "satisfied",
+                    "Parameters": [
+                        "k9"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "satisfier_r1_k10",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<=(temp r1)(+(temp_requested r1 k10)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(+(temp_requested r1 k10)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "+",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k10)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k10"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(>=(temp r1)(-(temp_requested r1 k10)(comfort)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(-(temp_requested r1 k10)(comfort))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "-",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp_requested r1 k10)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp_requested",
+                                    "Parameters": [
+                                        "r1",
+                                        "k10"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "(comfort)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "comfort",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(=(time)(time_requested r1 k10))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(time_requested r1 k10)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time_requested",
+                            "Parameters": [
+                                "r1",
+                                "k10"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(satisfied k10)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "satisfied",
+                    "Parameters": [
+                        "k10"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "increase_air_flow_r1",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<=(air_flow r1) 3)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(air_flow r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "air_flow",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "3",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "(increase(air_flow r1) 1)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(air_flow r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "air_flow",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "effectString": "1",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "decrease_air_flow_r1",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(>=(air_flow r1) 1)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(air_flow r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "air_flow",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "1",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "(decrease(air_flow r1) 1)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(air_flow r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "air_flow",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "effectString": "1",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "increase_temp_r1",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<=(temp_sa r1) 29)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp_sa r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp_sa",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "29",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "(increase(temp_sa r1) 1)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(temp_sa r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp_sa",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "effectString": "1",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "decrease_temp_r1",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(>=(temp_sa r1) 11)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(temp_sa r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp_sa",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "11",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "(decrease(temp_sa r1) 1)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(temp_sa r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp_sa",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "effectString": "1",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "processes": [
+        {
+            "processName": "time_passing",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(not (alwaysfalse))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "alwaysfalse",
+                    "Parameters": []
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(time)(* #t 1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(time)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "time",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "(* #t 1)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "thermal_change_r1",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(not (alwaysfalse))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "alwaysfalse",
+                    "Parameters": []
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(temp r1)(* #t(*(air_flow r1)(-(temp_sa r1)(temp r1)))))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(temp r1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "temp",
+                            "Parameters": [
+                                "r1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t(*(air_flow r1)(-(temp_sa r1)(temp r1))))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "(*(air_flow r1)(-(temp_sa r1)(temp r1)))",
+                                    "isNegated?": false,
+                                    "isOperation?": true,
+                                    "Name": "*",
+                                    "Parameters": [
+                                        {
+                                            "effect": "(air_flow r1)",
+                                            "isNegated?": false,
+                                            "isOperation?": false,
+                                            "Name": "air_flow",
+                                            "Parameters": [
+                                                "r1"
+                                            ]
+                                        },
+                                        {
+                                            "effectString": "(-(temp_sa r1)(temp r1))",
+                                            "isNegated?": false,
+                                            "isOperation?": true,
+                                            "Name": "-",
+                                            "Parameters": [
+                                                {
+                                                    "effect": "(temp_sa r1)",
+                                                    "isNegated?": false,
+                                                    "isOperation?": false,
+                                                    "Name": "temp_sa",
+                                                    "Parameters": [
+                                                        "r1"
+                                                    ]
+                                                },
+                                                {
+                                                    "effect": "(temp r1)",
+                                                    "isNegated?": false,
+                                                    "isOperation?": false,
+                                                    "Name": "temp",
+                                                    "Parameters": [
+                                                        "r1"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "events": [
+        {
+            "eventName": "temperature_constraint_r1",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(not( and(<=(temp r1) 30)(>=(temp r1) 10)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "and",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(<=(temp r1) 30)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "<=",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp r1)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp",
+                                    "Parameters": [
+                                        "r1"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "30",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        },
+                        {
+                            "preconditionString": "(>=(temp r1) 10)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": ">=",
+                            "Parameters": [
+                                {
+                                    "preconditionString": "(temp r1)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "temp",
+                                    "Parameters": [
+                                        "r1"
+                                    ]
+                                },
+                                {
+                                    "preconditionString": "10",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ]
+        }
+    ]
+}

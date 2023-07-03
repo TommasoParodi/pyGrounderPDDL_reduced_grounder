@@ -1,0 +1,138 @@
+{
+    "problem": "instance_8_300_01_100",
+    "domain": "car_linear_mt_sc",
+    "objects": [],
+    "init": [
+        {
+            "string": "(=(d)0.0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "d",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0.0"
+                }
+            ]
+        },
+        {
+            "string": "(=(v)0.0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "v",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0.0"
+                }
+            ]
+        },
+        {
+            "string": "(engine_stopped)",
+            "isAssignment?": false,
+            "predName": "engine_stopped",
+            "predObjects": []
+        },
+        {
+            "string": "(=(a)0.0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "a",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0.0"
+                }
+            ]
+        },
+        {
+            "string": "(=(max_acceleration)10)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "max_acceleration",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "10"
+                }
+            ]
+        },
+        {
+            "string": "(=(min_acceleration)-10)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "min_acceleration",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "-10"
+                }
+            ]
+        },
+        {
+            "string": "(=(max_speed)10.0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "max_speed",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "10.0"
+                }
+            ]
+        }
+    ],
+    "goal": [
+        {
+            "string": "(>=(d)2999.5)",
+            "predName": ">=",
+            "isOperation?": true,
+            "isNegated?": false,
+            "predObjects": [
+                {
+                    "predName": "d",
+                    "predObjects": []
+                },
+                {
+                    "predName": "Constant",
+                    "value": "2999.5"
+                }
+            ]
+        },
+        {
+            "string": "(<=(d)3000.5)",
+            "predName": "<=",
+            "isOperation?": true,
+            "isNegated?": false,
+            "predObjects": [
+                {
+                    "predName": "d",
+                    "predObjects": []
+                },
+                {
+                    "predName": "Constant",
+                    "value": "3000.5"
+                }
+            ]
+        },
+        {
+            "string": "(engine_stopped)",
+            "predName": "engine_stopped",
+            "predObjects": [],
+            "isOperation?": false,
+            "isNegated?": false
+        }
+    ]
+}

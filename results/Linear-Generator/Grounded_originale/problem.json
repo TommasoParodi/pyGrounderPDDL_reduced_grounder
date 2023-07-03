@@ -1,0 +1,389 @@
+{
+    "problem": "instance_1_2_40_900_70",
+    "domain": "generator_linear_duration_mt",
+    "objects": [
+        {
+            "objectType": "generator",
+            "objectIstances": [
+                "gen_1"
+            ]
+        },
+        {
+            "objectType": "tank",
+            "objectIstances": [
+                "tank_1",
+                "tank_2",
+                "tank_3",
+                "tank_4",
+                "tank_5",
+                "tank_6",
+                "tank_7",
+                "tank_8",
+                "tank_9",
+                "tank_10"
+            ]
+        }
+    ],
+    "init": [
+        {
+            "string": "(=(fuelLevelgen_1)800)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "fuelLevel",
+                    "operandObjects": [
+                        "gen_1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "800"
+                }
+            ]
+        },
+        {
+            "string": "(=(capacitygen_1)1000)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "capacity",
+                    "operandObjects": [
+                        "gen_1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "1000"
+                }
+            ]
+        },
+        {
+            "string": "(not_onlinegen_1)",
+            "isAssignment?": false,
+            "predName": "not_online",
+            "predObjects": [
+                "gen_1"
+            ]
+        },
+        {
+            "string": "(=(refuel_runninggen_1tank_1)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "refuel_running",
+                    "operandObjects": [
+                        "gen_1",
+                        "tank_1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(refuel_runninggen_1tank_2)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "refuel_running",
+                    "operandObjects": [
+                        "gen_1",
+                        "tank_2"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(refuel_runninggen_1tank_3)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "refuel_running",
+                    "operandObjects": [
+                        "gen_1",
+                        "tank_3"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(refuel_runninggen_1tank_4)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "refuel_running",
+                    "operandObjects": [
+                        "gen_1",
+                        "tank_4"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(refuel_runninggen_1tank_5)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "refuel_running",
+                    "operandObjects": [
+                        "gen_1",
+                        "tank_5"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(refuel_runninggen_1tank_6)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "refuel_running",
+                    "operandObjects": [
+                        "gen_1",
+                        "tank_6"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(refuel_runninggen_1tank_7)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "refuel_running",
+                    "operandObjects": [
+                        "gen_1",
+                        "tank_7"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(refuel_runninggen_1tank_8)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "refuel_running",
+                    "operandObjects": [
+                        "gen_1",
+                        "tank_8"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(refuel_runninggen_1tank_9)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "refuel_running",
+                    "operandObjects": [
+                        "gen_1",
+                        "tank_9"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(refuel_runninggen_1tank_10)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "refuel_running",
+                    "operandObjects": [
+                        "gen_1",
+                        "tank_10"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(generator_runninggen_1)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "generator_running",
+                    "operandObjects": [
+                        "gen_1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(availabletank_1)",
+            "isAssignment?": false,
+            "predName": "available",
+            "predObjects": [
+                "tank_1"
+            ]
+        },
+        {
+            "string": "(availabletank_2)",
+            "isAssignment?": false,
+            "predName": "available",
+            "predObjects": [
+                "tank_2"
+            ]
+        },
+        {
+            "string": "(availabletank_3)",
+            "isAssignment?": false,
+            "predName": "available",
+            "predObjects": [
+                "tank_3"
+            ]
+        },
+        {
+            "string": "(availabletank_4)",
+            "isAssignment?": false,
+            "predName": "available",
+            "predObjects": [
+                "tank_4"
+            ]
+        },
+        {
+            "string": "(availabletank_5)",
+            "isAssignment?": false,
+            "predName": "available",
+            "predObjects": [
+                "tank_5"
+            ]
+        },
+        {
+            "string": "(availabletank_6)",
+            "isAssignment?": false,
+            "predName": "available",
+            "predObjects": [
+                "tank_6"
+            ]
+        },
+        {
+            "string": "(availabletank_7)",
+            "isAssignment?": false,
+            "predName": "available",
+            "predObjects": [
+                "tank_7"
+            ]
+        },
+        {
+            "string": "(availabletank_8)",
+            "isAssignment?": false,
+            "predName": "available",
+            "predObjects": [
+                "tank_8"
+            ]
+        },
+        {
+            "string": "(availabletank_9)",
+            "isAssignment?": false,
+            "predName": "available",
+            "predObjects": [
+                "tank_9"
+            ]
+        },
+        {
+            "string": "(availabletank_10)",
+            "isAssignment?": false,
+            "predName": "available",
+            "predObjects": [
+                "tank_10"
+            ]
+        },
+        {
+            "string": "(=(generator_duration)1000)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "generator_duration",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "1000"
+                }
+            ]
+        },
+        {
+            "string": "(=(refuel_duration)10)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "refuel_duration",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "10"
+                }
+            ]
+        }
+    ],
+    "goal": [
+        {
+            "string": "(=(generator_runninggen_1)1000)",
+            "predName": "=",
+            "isOperation?": true,
+            "isNegated?": false,
+            "predObjects": [
+                {
+                    "predName": "generator_running",
+                    "predObjects": [
+                        "gen_1"
+                    ]
+                },
+                {
+                    "predName": "Constant",
+                    "value": "1000"
+                }
+            ]
+        },
+        {
+            "string": "(not(block))",
+            "isOperation?": false,
+            "isNegated?": true,
+            "predName": "(block)"
+        }
+    ]
+}

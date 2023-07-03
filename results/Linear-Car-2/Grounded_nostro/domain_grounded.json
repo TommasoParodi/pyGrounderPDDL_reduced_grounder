@@ -1,0 +1,526 @@
+{
+    "domain": "car_linear_mt_sc",
+    "requirements": [
+        ":fluents",
+        ":durative-actions",
+        ":duration-inequalities",
+        ":adl",
+        ":typing",
+        ":time"
+    ],
+    "types": [],
+    "constants": [],
+    "predicates": [
+        {
+            "predicateName": "engine_running",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "engine_stopped",
+            "predicateParameters": []
+        }
+    ],
+    "functions": [
+        {
+            "predicateName": "d",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "v",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "a",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "max_acceleration",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "min_acceleration",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "max_speed",
+            "predicateParameters": []
+        }
+    ],
+    "actions": [
+        {
+            "actionName": "accelerate",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(<(a)(max_acceleration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(a)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "a",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(max_acceleration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "max_acceleration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(engine_running)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "engine_running",
+                    "Parameters": []
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "(increase(a) 1.0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(a)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "a",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "1.0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "stop_car",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(v) -0.1)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(v)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "v",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "-0.1",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<(v) 0.1)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(v)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "v",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "0.1",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(=(a) 0.0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(a)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "a",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "0.0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(engine_running)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "engine_running",
+                    "Parameters": []
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "(assign(v) 0.0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(v)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "v",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "0.0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "effect": "(engine_stopped)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "engine_stopped",
+                    "Parameters": []
+                },
+                {
+                    "effect": "(not (engine_running))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "engine_running",
+                    "Parameters": []
+                }
+            ]
+        },
+        {
+            "actionName": "start_car",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(engine_stopped)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "engine_stopped",
+                    "Parameters": []
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(engine_running)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "engine_running",
+                    "Parameters": []
+                },
+                {
+                    "effect": "(not (engine_stopped))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "engine_stopped",
+                    "Parameters": []
+                }
+            ]
+        },
+        {
+            "actionName": "decelerate",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(>(a)(min_acceleration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(a)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "a",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "(min_acceleration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "min_acceleration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(engine_running)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "engine_running",
+                    "Parameters": []
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "(decrease(a) 1.0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(a)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "a",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "1.0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "processes": [
+        {
+            "processName": "displacement",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(engine_running)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "engine_running",
+                    "Parameters": []
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(d)(* #t(v)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(d)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "d",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "(* #t(v))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effect": "(v)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "v",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "moving",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(engine_running)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "engine_running",
+                    "Parameters": []
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(v)(* #t(a)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(v)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "v",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "(* #t(a))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effect": "(a)",
+                                    "isNegated?": false,
+                                    "isOperation?": false,
+                                    "Name": "a",
+                                    "Parameters": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "events": [
+        {
+            "eventName": "idle",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(engine_running)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "engine_running",
+                    "Parameters": []
+                },
+                {
+                    "preconditionString": "(<(a) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(a)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "a",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<=(v) 0.1)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(v)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "v",
+                            "Parameters": []
+                        },
+                        {
+                            "preconditionString": "0.1",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effectString": "(assign(v) 0.0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(v)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "v",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "0.0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(assign(a) 0.0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(a)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "a",
+                            "Parameters": []
+                        },
+                        {
+                            "effectString": "0.0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

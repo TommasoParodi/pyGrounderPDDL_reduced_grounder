@@ -1,0 +1,543 @@
+{
+    "problem": "instance1",
+    "domain": "hvac",
+    "objects": [
+        {
+            "objectType": "room",
+            "objectIstances": [
+                "r1"
+            ]
+        },
+        {
+            "objectType": "request",
+            "objectIstances": [
+                "k1",
+                "k2",
+                "k3",
+                "k4",
+                "k5",
+                "k6",
+                "k7",
+                "k8",
+                "k9",
+                "k10"
+            ]
+        }
+    ],
+    "init": [
+        {
+            "string": "(=(time_requestedr1k1)10)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "time_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "10"
+                }
+            ]
+        },
+        {
+            "string": "(=(temp_requestedr1k1)20)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "temp_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "20"
+                }
+            ]
+        },
+        {
+            "string": "(=(time_requestedr1k2)20)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "time_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k2"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "20"
+                }
+            ]
+        },
+        {
+            "string": "(=(temp_requestedr1k2)14)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "temp_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k2"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "14"
+                }
+            ]
+        },
+        {
+            "string": "(=(time_requestedr1k3)30)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "time_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k3"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "30"
+                }
+            ]
+        },
+        {
+            "string": "(=(temp_requestedr1k3)20)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "temp_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k3"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "20"
+                }
+            ]
+        },
+        {
+            "string": "(=(time_requestedr1k4)40)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "time_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k4"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "40"
+                }
+            ]
+        },
+        {
+            "string": "(=(temp_requestedr1k4)14)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "temp_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k4"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "14"
+                }
+            ]
+        },
+        {
+            "string": "(=(time_requestedr1k5)50)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "time_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k5"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "50"
+                }
+            ]
+        },
+        {
+            "string": "(=(temp_requestedr1k5)20)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "temp_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k5"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "20"
+                }
+            ]
+        },
+        {
+            "string": "(=(time_requestedr1k6)60)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "time_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k6"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "60"
+                }
+            ]
+        },
+        {
+            "string": "(=(temp_requestedr1k6)14)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "temp_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k6"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "14"
+                }
+            ]
+        },
+        {
+            "string": "(=(time_requestedr1k7)70)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "time_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k7"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "70"
+                }
+            ]
+        },
+        {
+            "string": "(=(temp_requestedr1k7)20)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "temp_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k7"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "20"
+                }
+            ]
+        },
+        {
+            "string": "(=(time_requestedr1k8)80)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "time_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k8"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "80"
+                }
+            ]
+        },
+        {
+            "string": "(=(temp_requestedr1k8)14)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "temp_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k8"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "14"
+                }
+            ]
+        },
+        {
+            "string": "(=(time_requestedr1k9)90)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "time_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k9"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "90"
+                }
+            ]
+        },
+        {
+            "string": "(=(temp_requestedr1k9)20)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "temp_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k9"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "20"
+                }
+            ]
+        },
+        {
+            "string": "(=(time_requestedr1k10)100)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "time_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k10"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "100"
+                }
+            ]
+        },
+        {
+            "string": "(=(temp_requestedr1k10)20)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "temp_requested",
+                    "operandObjects": [
+                        "r1",
+                        "k10"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "20"
+                }
+            ]
+        },
+        {
+            "string": "(=(tempr1)15)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "temp",
+                    "operandObjects": [
+                        "r1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "15"
+                }
+            ]
+        },
+        {
+            "string": "(=(air_flowr1)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "air_flow",
+                    "operandObjects": [
+                        "r1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(temp_sar1)10)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "temp_sa",
+                    "operandObjects": [
+                        "r1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "10"
+                }
+            ]
+        },
+        {
+            "string": "(=(time)0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "time",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "0"
+                }
+            ]
+        },
+        {
+            "string": "(=(comfort)2)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "comfort",
+                    "operandObjects": []
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "2"
+                }
+            ]
+        }
+    ],
+    "goal": [
+        {
+            "string": "(not(block))",
+            "isOperation?": false,
+            "isNegated?": true,
+            "predName": "(block)"
+        },
+        {
+            "string": "(satisfiedk1)",
+            "predName": "satisfied",
+            "predObjects": [
+                "k1"
+            ],
+            "isOperation?": false,
+            "isNegated?": false
+        },
+        {
+            "string": "(satisfiedk2)",
+            "predName": "satisfied",
+            "predObjects": [
+                "k2"
+            ],
+            "isOperation?": false,
+            "isNegated?": false
+        },
+        {
+            "string": "(satisfiedk3)",
+            "predName": "satisfied",
+            "predObjects": [
+                "k3"
+            ],
+            "isOperation?": false,
+            "isNegated?": false
+        },
+        {
+            "string": "(satisfiedk4)",
+            "predName": "satisfied",
+            "predObjects": [
+                "k4"
+            ],
+            "isOperation?": false,
+            "isNegated?": false
+        },
+        {
+            "string": "(satisfiedk5)",
+            "predName": "satisfied",
+            "predObjects": [
+                "k5"
+            ],
+            "isOperation?": false,
+            "isNegated?": false
+        },
+        {
+            "string": "(satisfiedk6)",
+            "predName": "satisfied",
+            "predObjects": [
+                "k6"
+            ],
+            "isOperation?": false,
+            "isNegated?": false
+        },
+        {
+            "string": "(satisfiedk7)",
+            "predName": "satisfied",
+            "predObjects": [
+                "k7"
+            ],
+            "isOperation?": false,
+            "isNegated?": false
+        },
+        {
+            "string": "(satisfiedk8)",
+            "predName": "satisfied",
+            "predObjects": [
+                "k8"
+            ],
+            "isOperation?": false,
+            "isNegated?": false
+        },
+        {
+            "string": "(satisfiedk9)",
+            "predName": "satisfied",
+            "predObjects": [
+                "k9"
+            ],
+            "isOperation?": false,
+            "isNegated?": false
+        },
+        {
+            "string": "(satisfiedk10)",
+            "predName": "satisfied",
+            "predObjects": [
+                "k10"
+            ],
+            "isOperation?": false,
+            "isNegated?": false
+        }
+    ]
+}

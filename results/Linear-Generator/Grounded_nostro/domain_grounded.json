@@ -1,0 +1,3008 @@
+{
+    "domain": "generator_linear_mt",
+    "requirements": [
+        ":fluents",
+        ":durative-actions",
+        ":duration-inequalities",
+        ":adl",
+        ":typing",
+        ":time"
+    ],
+    "types": [
+        "generator",
+        "tank"
+    ],
+    "constants": [
+        {
+            "constantName": "gen_1",
+            "constantType": "generator"
+        },
+        {
+            "constantName": "tank_1",
+            "constantType": "tank"
+        },
+        {
+            "constantName": "tank_2",
+            "constantType": "tank"
+        },
+        {
+            "constantName": "tank_3",
+            "constantType": "tank"
+        },
+        {
+            "constantName": "tank_4",
+            "constantType": "tank"
+        },
+        {
+            "constantName": "tank_5",
+            "constantType": "tank"
+        },
+        {
+            "constantName": "tank_6",
+            "constantType": "tank"
+        },
+        {
+            "constantName": "tank_7",
+            "constantType": "tank"
+        },
+        {
+            "constantName": "tank_8",
+            "constantType": "tank"
+        },
+        {
+            "constantName": "tank_9",
+            "constantType": "tank"
+        },
+        {
+            "constantName": "tank_10",
+            "constantType": "tank"
+        }
+    ],
+    "predicates": [
+        {
+            "predicateName": "online",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "not_online",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "available",
+            "predicateParameters": [
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ]
+        },
+        {
+            "predicateName": "not_available",
+            "predicateParameters": [
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ]
+        },
+        {
+            "predicateName": "generator-ran",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "using",
+            "predicateParameters": [
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ]
+        },
+        {
+            "predicateName": "block",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "block_refuel",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                },
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ]
+        },
+        {
+            "predicateName": "block_generator",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "closed",
+            "predicateParameters": []
+        }
+    ],
+    "functions": [
+        {
+            "predicateName": "fuelLevel",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "capacity",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "generator_running",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                }
+            ]
+        },
+        {
+            "predicateName": "refuel_running",
+            "predicateParameters": [
+                {
+                    "parameterName": "?g",
+                    "parameterType": "generator"
+                },
+                {
+                    "parameterName": "?t",
+                    "parameterType": "tank"
+                }
+            ]
+        },
+        {
+            "predicateName": "generator_duration",
+            "predicateParameters": []
+        },
+        {
+            "predicateName": "refuel_duration",
+            "predicateParameters": []
+        }
+    ],
+    "actions": [
+        {
+            "actionName": "turn_on_gen_1",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(not_online gen_1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "not_online",
+                    "Parameters": [
+                        "gen_1"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(generator_running gen_1)(generator_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(generator_running gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "generator_running",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(generator_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "generator_duration",
+                            "Parameters": []
+                        }
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(online gen_1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "online",
+                    "Parameters": [
+                        "gen_1"
+                    ]
+                },
+                {
+                    "effect": "(not (not_online gen_1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "not_online",
+                    "Parameters": [
+                        "gen_1"
+                    ]
+                },
+                {
+                    "effectString": "(assign(generator_running gen_1) 0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "assign",
+                    "Parameters": [
+                        {
+                            "effect": "(generator_running gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "generator_running",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_refueling_gen_1_tank_1",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(available tank_1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_1"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (available tank_1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_1"
+                    ]
+                },
+                {
+                    "effect": "(using tank_1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_1"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_refueling_gen_1_tank_2",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(available tank_2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_2"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (available tank_2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_2"
+                    ]
+                },
+                {
+                    "effect": "(using tank_2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_2"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_refueling_gen_1_tank_3",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(available tank_3)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_3"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (available tank_3))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_3"
+                    ]
+                },
+                {
+                    "effect": "(using tank_3)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_3"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_refueling_gen_1_tank_4",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(available tank_4)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_4"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (available tank_4))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_4"
+                    ]
+                },
+                {
+                    "effect": "(using tank_4)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_4"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_refueling_gen_1_tank_5",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(available tank_5)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_5"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (available tank_5))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_5"
+                    ]
+                },
+                {
+                    "effect": "(using tank_5)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_5"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_refueling_gen_1_tank_6",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(available tank_6)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_6"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (available tank_6))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_6"
+                    ]
+                },
+                {
+                    "effect": "(using tank_6)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_6"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_refueling_gen_1_tank_7",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(available tank_7)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_7"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (available tank_7))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_7"
+                    ]
+                },
+                {
+                    "effect": "(using tank_7)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_7"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_refueling_gen_1_tank_8",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(available tank_8)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_8"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (available tank_8))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_8"
+                    ]
+                },
+                {
+                    "effect": "(using tank_8)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_8"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_refueling_gen_1_tank_9",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(available tank_9)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_9"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (available tank_9))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_9"
+                    ]
+                },
+                {
+                    "effect": "(using tank_9)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_9"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "start_refueling_gen_1_tank_10",
+            "actionParameters": [],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "(available tank_10)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_10"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effect": "(not (available tank_10))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "available",
+                    "Parameters": [
+                        "tank_10"
+                    ]
+                },
+                {
+                    "effect": "(using tank_10)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_10"
+                    ]
+                }
+            ]
+        }
+    ],
+    "processes": [
+        {
+            "processName": "generate_power_gen_1",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(online gen_1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "online",
+                    "Parameters": [
+                        "gen_1"
+                    ]
+                },
+                {
+                    "preconditionString": "(>(fuelLevel gen_1) 0.0)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": ">",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "0.0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_generator gen_1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_generator",
+                    "Parameters": [
+                        "gen_1"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(decrease(fuelLevel gen_1)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "decrease",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(generator_running gen_1)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(generator_running gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "generator_running",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "refuel_generator_gen_1_tank_1",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(using tank_1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_1"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(fuelLevel gen_1)(capacity gen_1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<(refuel_running gen_1 tank_1)(refuel_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_1"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(fuelLevel gen_1)(* #t 2.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 2.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "2.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(refuel_running gen_1 tank_1)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(refuel_running gen_1 tank_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "refuel_generator_gen_1_tank_2",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(using tank_2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_2"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(fuelLevel gen_1)(capacity gen_1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<(refuel_running gen_1 tank_2)(refuel_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_2"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(fuelLevel gen_1)(* #t 2.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 2.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "2.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(refuel_running gen_1 tank_2)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(refuel_running gen_1 tank_2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_2"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "refuel_generator_gen_1_tank_3",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(using tank_3)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_3"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(fuelLevel gen_1)(capacity gen_1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<(refuel_running gen_1 tank_3)(refuel_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_3)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_3"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_3))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_3"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(fuelLevel gen_1)(* #t 2.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 2.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "2.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(refuel_running gen_1 tank_3)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(refuel_running gen_1 tank_3)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_3"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "refuel_generator_gen_1_tank_4",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(using tank_4)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_4"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(fuelLevel gen_1)(capacity gen_1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<(refuel_running gen_1 tank_4)(refuel_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_4)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_4"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_4))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_4"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(fuelLevel gen_1)(* #t 2.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 2.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "2.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(refuel_running gen_1 tank_4)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(refuel_running gen_1 tank_4)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_4"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "refuel_generator_gen_1_tank_5",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(using tank_5)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_5"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(fuelLevel gen_1)(capacity gen_1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<(refuel_running gen_1 tank_5)(refuel_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_5)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_5"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_5))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_5"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(fuelLevel gen_1)(* #t 2.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 2.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "2.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(refuel_running gen_1 tank_5)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(refuel_running gen_1 tank_5)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_5"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "refuel_generator_gen_1_tank_6",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(using tank_6)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_6"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(fuelLevel gen_1)(capacity gen_1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<(refuel_running gen_1 tank_6)(refuel_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_6)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_6"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_6))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_6"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(fuelLevel gen_1)(* #t 2.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 2.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "2.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(refuel_running gen_1 tank_6)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(refuel_running gen_1 tank_6)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_6"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "refuel_generator_gen_1_tank_7",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(using tank_7)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_7"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(fuelLevel gen_1)(capacity gen_1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<(refuel_running gen_1 tank_7)(refuel_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_7)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_7"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_7))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_7"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(fuelLevel gen_1)(* #t 2.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 2.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "2.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(refuel_running gen_1 tank_7)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(refuel_running gen_1 tank_7)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_7"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "refuel_generator_gen_1_tank_8",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(using tank_8)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_8"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(fuelLevel gen_1)(capacity gen_1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<(refuel_running gen_1 tank_8)(refuel_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_8)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_8"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_8))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_8"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(fuelLevel gen_1)(* #t 2.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 2.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "2.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(refuel_running gen_1 tank_8)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(refuel_running gen_1 tank_8)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_8"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "refuel_generator_gen_1_tank_9",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(using tank_9)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_9"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(fuelLevel gen_1)(capacity gen_1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<(refuel_running gen_1 tank_9)(refuel_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_9)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_9"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_9))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_9"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(fuelLevel gen_1)(* #t 2.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 2.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "2.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(refuel_running gen_1 tank_9)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(refuel_running gen_1 tank_9)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_9"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "refuel_generator_gen_1_tank_10",
+            "processParameters": [],
+            "processPreconditions": [
+                {
+                    "preconditionString": "(using tank_10)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "using",
+                    "Parameters": [
+                        "tank_10"
+                    ]
+                },
+                {
+                    "preconditionString": "(<(fuelLevel gen_1)(capacity gen_1))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(<(refuel_running gen_1 tank_10)(refuel_duration))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "<",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_10)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_10"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_10))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_10"
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "(increase(fuelLevel gen_1)(* #t 2.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 2.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "2.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "effectString": "(increase(refuel_running gen_1 tank_10)(* #t 1.0))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "Name": "increase",
+                    "Parameters": [
+                        {
+                            "effect": "(refuel_running gen_1 tank_10)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_10"
+                            ]
+                        },
+                        {
+                            "effectString": "(* #t 1.0)",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "Name": "*",
+                            "Parameters": [
+                                {
+                                    "effectString": "#t",
+                                    "Name": "Time",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                },
+                                {
+                                    "effectString": "1.0",
+                                    "Name": "Constant",
+                                    "Parameters": [],
+                                    "isNegated?": false,
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "events": [
+        {
+            "eventName": "min_generator_fuel_gen_1",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( >=(fuelLevel gen_1) 0.0))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": ">=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "0.0",
+                            "Name": "Constant",
+                            "Parameters": [],
+                            "isNegated?": false,
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ]
+        },
+        {
+            "eventName": "max_generator_fuel_gen_1",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( <=(fuelLevel gen_1)(capacity gen_1)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(fuelLevel gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "fuelLevel",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(capacity gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "capacity",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block",
+                    "Parameters": []
+                }
+            ]
+        },
+        {
+            "eventName": "refuel_duration_block_gen_1_tank_1",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( <=(refuel_running gen_1 tank_1)(refuel_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_1"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_refuel gen_1 tank_1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_1"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "refuel_duration_block_gen_1_tank_2",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( <=(refuel_running gen_1 tank_2)(refuel_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_2)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_2"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_2))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_2"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_refuel gen_1 tank_2)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_2"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "refuel_duration_block_gen_1_tank_3",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( <=(refuel_running gen_1 tank_3)(refuel_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_3)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_3"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_3))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_3"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_refuel gen_1 tank_3)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_3"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "refuel_duration_block_gen_1_tank_4",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( <=(refuel_running gen_1 tank_4)(refuel_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_4)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_4"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_4))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_4"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_refuel gen_1 tank_4)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_4"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "refuel_duration_block_gen_1_tank_5",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( <=(refuel_running gen_1 tank_5)(refuel_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_5)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_5"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_5))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_5"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_refuel gen_1 tank_5)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_5"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "refuel_duration_block_gen_1_tank_6",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( <=(refuel_running gen_1 tank_6)(refuel_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_6)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_6"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_6))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_6"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_refuel gen_1 tank_6)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_6"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "refuel_duration_block_gen_1_tank_7",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( <=(refuel_running gen_1 tank_7)(refuel_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_7)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_7"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_7))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_7"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_refuel gen_1 tank_7)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_7"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "refuel_duration_block_gen_1_tank_8",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( <=(refuel_running gen_1 tank_8)(refuel_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_8)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_8"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_8))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_8"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_refuel gen_1 tank_8)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_8"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "refuel_duration_block_gen_1_tank_9",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( <=(refuel_running gen_1 tank_9)(refuel_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_9)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_9"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_9))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_9"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_refuel gen_1 tank_9)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_9"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "refuel_duration_block_gen_1_tank_10",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( <=(refuel_running gen_1 tank_10)(refuel_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(refuel_running gen_1 tank_10)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_running",
+                            "Parameters": [
+                                "gen_1",
+                                "tank_10"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(refuel_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "refuel_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_refuel gen_1 tank_10))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_10"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_refuel gen_1 tank_10)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_refuel",
+                    "Parameters": [
+                        "gen_1",
+                        "tank_10"
+                    ]
+                }
+            ]
+        },
+        {
+            "eventName": "generator_duration_block_gen_1",
+            "eventParameters": [],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "(not( <=(generator_running gen_1)(generator_duration)))",
+                    "isNegated?": true,
+                    "isOperation?": true,
+                    "Name": "<=",
+                    "Parameters": [
+                        {
+                            "preconditionString": "(generator_running gen_1)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "generator_running",
+                            "Parameters": [
+                                "gen_1"
+                            ]
+                        },
+                        {
+                            "preconditionString": "(generator_duration)",
+                            "isNegated?": false,
+                            "isOperation?": false,
+                            "Name": "generator_duration",
+                            "Parameters": []
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "(not (block_generator gen_1))",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "Name": "block_generator",
+                    "Parameters": [
+                        "gen_1"
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effect": "(block_generator gen_1)",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "Name": "block_generator",
+                    "Parameters": [
+                        "gen_1"
+                    ]
+                }
+            ]
+        }
+    ]
+}
